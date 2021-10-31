@@ -1,0 +1,52 @@
+<div>
+    <div class="login">
+        <div class="login-panel">
+                                
+            <div class="register-info-box">
+                <h2>Đăng ký tài khoản?</h2>
+                <p>Nếu bạn chưa có tài khoản</p>
+                <label id="label-login" for="log-login-show" (click)="openRegister()">Đăng ký</label>
+                &nbsp;
+                <label id="label-login" for="log-login-show" (click)="openLogin()">Đăng nhập</label>
+            </div>                    
+            <div class="white-panel">
+                <div *ngIf="userState==state.login" class="login-show">
+                    <h2>Đăng nhập</h2>
+                    <input type="text"
+                        [(ngModel)]="user.userName"
+                        placeholder="Email/ Tên đăng nhập">
+                    <input type="password"
+                        [(ngModel)]="user.password"
+                        placeholder="Mật khẩu">
+                    <input type="button" (click)="login()" value="Đăng nhập">
+                    <a href="">Quên mật khẩu?</a>
+                </div>
+                <div *ngIf="userState==state.register" class="register-show">
+                    <h2>Đăng ký</h2>
+                    <input type="text"
+                        [(ngModel)]="user.userName"
+                        placeholder="Tên đăng nhập">
+                    <input type="text"
+                        [(ngModel)]="user.email"
+                        placeholder="Email">
+                    <input type="text"
+                        [(ngModel)]="user.fullName"
+                        placeholder="Họ tên đầy đủ">
+                    <input type="text" 
+                        [(ngModel)]="user.phoneNumber"
+                        placeholder="Số điện thoại">
+                    <input type="text" 
+                        [(ngModel)]="user.identityNumber"
+                        placeholder="Số CMND">
+                    <input type="password" 
+                        [(ngModel)]="user.password"
+                        placeholder="Mật khẩu">
+                    <input type="button" (click)="register()" value="Đăng ký">
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-toast></p-toast>
+</div>
+
+  
