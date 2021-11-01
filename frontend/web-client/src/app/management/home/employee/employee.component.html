@@ -1,0 +1,30 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Họ tên</th>
+        <th scope="col">Ngày sinh</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Phòng ban</th>
+        <th scope="col">Chức vụ</th>
+        <th scope="col">Quê quán</th>
+        <th scope="col">Lương bảo hiểm</th>
+        <th scope="col">Công cụ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees | async; let i = index">
+        <td>{{employee.hoTen}}</td>
+        <td>{{employee.ngaySinh}}</td>
+        <td>{{employee.gioiTinh}}</td>
+        <td>{{employee.phongBan}}</td>
+        <td>{{employee.chucVu}}</td>
+        <td>{{employee.queQuan}}</td>
+        <td>{{employee.luongBaoHiem}}</td>
+        <td>
+            <button>Sửa</button>
+            <button>Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

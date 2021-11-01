@@ -22,7 +22,7 @@ export  class BaseService<T> {
             .pipe(catchError(err => this.handleError(err, this._injector)));
     }
 
-    getAllData(url: string): Observable<DataResponse> {
+    getAllData(url: string): Observable<any> {
         return this._http.get<DataResponse>(BaseURL+url)
             .pipe(catchError(err => this.handleError(err, this._injector)));
     }

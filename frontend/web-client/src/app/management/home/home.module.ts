@@ -6,6 +6,8 @@ import { HomeComponent } from './home.component';
 import { ToastModule } from 'primeng/toast';
 import { HeaderComponent } from 'src/app/layout/header.component';
 import { FooterComponent } from 'src/app/layout/footer.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,10 @@ import { FooterComponent } from 'src/app/layout/footer.component';
     FooterComponent,
     //component
     HomeComponent,
+    EmployeeComponent,
   ],
   imports: [
+    CommonModule,
     HomeRoutingModule,
     FormsModule,
     NgbModule,
