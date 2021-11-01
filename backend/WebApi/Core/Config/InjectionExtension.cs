@@ -17,6 +17,7 @@ namespace Core.Config
         public static void DependencyInjectionRepository(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INhanCongRepository, NhanCongRepository>();
         }
     }
 }
