@@ -60,6 +60,7 @@ namespace Core.Base
     }
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
+        //private NKSLKContext nKSLKContext;
         private NKSLKContext _dbContext;
         private readonly DbSet<T> _dbset;
         protected BaseRepository(
@@ -138,7 +139,6 @@ namespace Core.Base
         {
             return _dbset.Where(express).FirstOrDefault<T>();
         }
-
-
     }
+
 }

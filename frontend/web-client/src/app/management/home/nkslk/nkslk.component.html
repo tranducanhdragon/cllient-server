@@ -16,41 +16,37 @@
   </head>
   <body>
     <div style="margin-right: auto;">
-      <a href="\createEmployee.html" type="button" class="btn btn-primary">Tạo nhân viên mới</a>
+        <a href="\createNKSLK.html" type="button" class="btn btn-primary">Tạo nhật ký sản lượng khoán mới</a>
     </div>
-    <div>
-      <table class="table" >
-        <thead>
-          <tr>
-            <th scope="col">Họ tên</th>
-            <th scope="col">Ngày sinh</th>
-            <th scope="col">Giới tính</th>
-            <th scope="col">Phòng ban</th>
-            <th scope="col">Chức vụ</th>
-            <th scope="col">Quê quán</th>
-            <th scope="col">Lương bảo hiểm</th>
-            <th scope="col">Công cụ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let employee of employees | async; let i = index">
-            <td>{{employee.hoTen}}</td>
-            <td>{{employee.ngaySinh}}</td>
-            <td>{{employee.gioiTinh}}</td>
-            <td>{{employee.phongBan}}</td>
-            <td>{{employee.chucVu}}</td>
-            <td>{{employee.queQuan}}</td>
-            <td>{{employee.luongBaoHiem}}</td>
-            <td>
-                <button class="btn btn-secondary"> Sửa</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee)">
-                  Xóa
-                </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">Ngày tạo</th>
+        <th scope="col">Mã NKSLK</th>
+        <th scope="col">Danh mục khoán chi tiết</th>
+        <th scope="col">Nhật ký sản lượng khoán chi tiết</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let NKSLK of NKSLKs | async; let i = index">
+        <td>{{NKSLK.ngay}}</td>
+        <td>{{NKSLK.maNkslk}}</td>
+        <td>{{NKSLK.danhMucKhoanChiTiets}}</td>
+        <td>{{NKSLK.nkslkChiTiets}}</td>
+        <!-- ngay?: Date,
+        maNkslk?: number,
+        danhMucKhoanChiTiets?: string,
+        nkslkChiTiets?: string -->
+        <td>
+            <button class="btn btn-secondary"> Sửa</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" > 
+                <!-- (click)="deleteEmployee(employee)" -->
+              Xóa
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <!-- Modal -->
   <!-- <ng-template #modal let-modal>
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

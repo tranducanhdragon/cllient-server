@@ -18,6 +18,7 @@ namespace Core.Config
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INhanCongRepository, NhanCongRepository>();
+            services.AddScoped<INKSLKRepository, NKSLKRepository>(); 
         }
     }
 }

@@ -8,6 +8,7 @@ import { HeaderComponent } from 'src/app/layout/header.component';
 import { FooterComponent } from 'src/app/layout/footer.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CommonModule } from '@angular/common';
+import { NKSLKComponent } from './nkslk/nkslk.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
     //component
     HomeComponent,
     EmployeeComponent,
+    NKSLKComponent,
   ],
   imports: [
     CommonModule,
