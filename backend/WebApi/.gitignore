@@ -2,6 +2,6 @@
 *.dll
 *.cache
 /.vs/*
-Code/bin/*
+/Code/bin/*
 WebApi/obj/*
 EntityFramework/bin/*
