@@ -25,12 +25,6 @@ export class NKSLKComponent implements OnInit {
     this.modalService.open(data);
   }
   deleteNKSLK(NKSLK:NKSLK){
-    if (!NKSLK.maNkslk) {
-      throw new Error("Unexpected error: Missing name");
-  }
-  
-  let name1: number = NKSLK.maNkslk;
-  
-    this.NKSLKService.delete('/api/NKSLK/delete', String(name1));
+    this.NKSLKService.delete('/api/NKSLK/delete', String(NKSLK.maNkslk));
   }
 }

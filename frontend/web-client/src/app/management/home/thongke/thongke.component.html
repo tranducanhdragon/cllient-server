@@ -1,0 +1,271 @@
+<section class="content-header">
+
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h6>Công việc có nhiều sản lượng khoán nhất:</h6>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <h6>Tên công việc: {{congviecmaxslk.tenCongViec}}</h6> 
+                    </div>
+                    <div class="row">
+                        <h6>Số lượng: {{congviecmaxslk.soLuong}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá cao nhất:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Mã công viêc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{congviecdongiamax.tenCongViec}}</td>
+                        <td>{{congviecdongiamax.dinhMucKhoan}}</td>
+                        <td>{{congviecdongiamax.donViKhoan}}</td>
+                        <td>{{congviecdongiamax.heSoKhoan}}</td>
+                        <td>{{congviecdongiamax.dinhMucLaoDong}}</td>
+                        <td>{{congviecdongiamax.donGia}}</td>
+                        <td>{{congviecdongiamax.maCongViec}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá nhỏ nhất:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Mã công viêc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{congviecdongiamin.tenCongViec}}</td>
+                        <td>{{congviecdongiamin.dinhMucKhoan}}</td>
+                        <td>{{congviecdongiamin.donViKhoan}}</td>
+                        <td>{{congviecdongiamin.heSoKhoan}}</td>
+                        <td>{{congviecdongiamin.dinhMucLaoDong}}</td>
+                        <td>{{congviecdongiamin.donGia}}</td>
+                        <td>{{congviecdongiamin.maCongViec}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá lớn hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Mã công viêc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let congviec of congvieclonhondontb">
+                        <td>{{congviec.tenCongViec}}</td>
+                        <td>{{congviec.dinhMucKhoan}}</td>
+                        <td>{{congviec.donViKhoan}}</td>
+                        <td>{{congviec.heSoKhoan}}</td>
+                        <td>{{congviec.dinhMucLaoDong}}</td>
+                        <td>{{congviec.donGia}}</td>
+                        <td>{{congviec.maCongViec}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá nhỏ hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Mã công viêc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let congviec of congviecnhohondontb">
+                            <td>{{congviec.tenCongViec}}</td>
+                            <td>{{congviec.dinhMucKhoan}}</td>
+                            <td>{{congviec.donViKhoan}}</td>
+                            <td>{{congviec.heSoKhoan}}</td>
+                            <td>{{congviec.dinhMucLaoDong}}</td>
+                            <td>{{congviec.donGia}}</td>
+                            <td>{{congviec.maCongViec}}</td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>NKSLK của công nhân theo tháng:</h5>
+                    <br/>
+                </div>
+                <div class="col-3">
+                    <input [(ngModel)]="month" type="number" min="1" max="12">
+                </div>
+                <div class="col-3">
+                    <button class="btn bg-primary text-white" (click)="getNKSLKCongNhanThang()">Lấy</button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Phòng ban</th>
+                        <th scope="col">Chức vụ</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Tháng</th>
+                        <th scope="col">Giờ bắt đầu</th>
+                        <th scope="col">Giờ kết thúc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let nkslk of nkslkcongnhanthang">
+                        <td>{{nkslk.hoTen}}</td>
+                        <td>{{nkslk.ngaySinh}}</td>
+                        <td>{{nkslk.phongBan}}</td>
+                        <td>{{nkslk.chucVu}}</td>
+                        <td>{{nkslk.gioiTinh}}</td>
+                        <td>{{nkslk.ngayNKSLK}}</td>
+                        <td>{{nkslk.gioBatDau?.hours}}</td>
+                        <td>{{nkslk.gioKetThuc?.hours}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Thống kê những công nhân có số giờ làm vượt chuẩn:</h5>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Thống kê lương công nhân theo tháng:</h5>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

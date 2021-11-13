@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { DataResponse } from '../model/dataresponse';
 
-const BaseURL = 'https://localhost:44366';
+const BaseURL = 'http://localhost:44260';
 
 @Injectable()
 export  class BaseService<T> {

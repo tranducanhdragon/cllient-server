@@ -9,6 +9,7 @@ import { FooterComponent } from 'src/app/layout/footer.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CommonModule } from '@angular/common';
 import { NKSLKComponent } from './nkslk/nkslk.component';
+import { ThongkeComponent } from './thongke/thongke.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NKSLKComponent } from './nkslk/nkslk.component';
     HomeComponent,
     EmployeeComponent,
     NKSLKComponent,
+    ThongkeComponent,
   ],
   imports: [
     CommonModule,

@@ -19,7 +19,6 @@ export class EmployeeComponent implements OnInit {
     this.getEmployees();
   }
   getEmployees(){
-    debugger
     this.employees = this.employeeService.getAllData('/api/Employee/getall');
   }
   open(data:any){
@@ -28,9 +27,8 @@ export class EmployeeComponent implements OnInit {
   deleteEmployee(employee:Employee){
     if (!employee.maNhanCong) {
       throw new Error("Unexpected error: Missing name");
-  }
-  
-  let name1: string = employee.maNhanCong;
+    }
+    let name1: string = employee.maNhanCong;
     this.employeeService.delete('/api/Employee/delete', name1);
   }
 }

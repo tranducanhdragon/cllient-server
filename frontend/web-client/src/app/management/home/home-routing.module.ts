@@ -5,6 +5,7 @@ import { RoleConst } from 'src/environments/constant';
 import { EmployeeComponent } from './employee/employee.component';
 import { HomeComponent } from './home.component';
 import { NKSLKComponent } from './nkslk/nkslk.component';
+import { ThongkeComponent } from './thongke/thongke.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,7 @@ const routes: Routes = [
         children:[
           {path:'employee', component:EmployeeComponent},
           {path:'nkslk', component:NKSLKComponent},
+          {path:'thongke', component:ThongkeComponent},
         ]
     }
 ];
