@@ -21,7 +21,6 @@ namespace WebApi
         public static void AddCustomService(this IServiceCollection services, IConfiguration configuration)
         {
             //config dependency injection
-            services.DependencyInjectionService(configuration);
             services.DependencyInjectionRepository(configuration);
 
             //config auto mapper

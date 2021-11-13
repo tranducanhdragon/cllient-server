@@ -57,6 +57,7 @@ namespace Core.Base
         IEnumerable<T> GetAll();
         IEnumerable<T> GetMany(Expression<Func<T, bool>> expression);
         IPagedList<T> GetPage<TOrder>(Page page, Expression<Func<T, bool>> where, Expression<Func<T, TOrder>> order);
+        IEnumerable<T> GetFromQueryString(string query);
     }
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
@@ -138,6 +139,10 @@ namespace Core.Base
         public T Get(Expression<Func<T, bool>> express)
         {
             return _dbset.Where(express).FirstOrDefault<T>();
+        }
+        public virtual IEnumerable<T> GetFromQueryString(string query)
+        {
+            return _dbset.FromSqlRaw<T>(query).ToList();
         }
     }
 

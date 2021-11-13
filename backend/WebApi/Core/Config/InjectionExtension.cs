@@ -10,15 +10,12 @@ namespace Core.Config
 {
     public static class InjectionExtension
     {
-        public static void DependencyInjectionService(this IServiceCollection services, IConfiguration configuration)
-        {
-
-        }
         public static void DependencyInjectionRepository(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INhanCongRepository, NhanCongRepository>();
             services.AddScoped<INKSLKRepository, NKSLKRepository>(); 
+            services.AddScoped<IThongKeRepository, ThongKeRepository>();
         }
     }
 }

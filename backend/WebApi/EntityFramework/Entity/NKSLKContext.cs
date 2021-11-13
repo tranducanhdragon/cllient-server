@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,6 +9,34 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EntityFramework.Entity
 {
+    public static class Helper
+    {
+        public static List<T> RawSqlQuery<T>(string query, Func<DbDataReader, T> map)
+        {
+            using (var context = new NKSLKContext())
+            {
+                using (var command = context.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.CommandType = CommandType.Text;
+
+                    context.Database.OpenConnection();
+
+                    using (var result = command.ExecuteReader())
+                    {
+                        var entities = new List<T>();
+
+                        while (result.Read())
+                        {
+                            entities.Add(map(result));
+                        }
+
+                        return entities;
+                    }
+                }
+            }
+        }
+    }
     public partial class NKSLKContext : DbContext
     {
         public NKSLKContext()
