@@ -1,0 +1,7 @@
+#dll#
+*.dll
+*.cache
+/.vs/*
+Code/bin/*
+WebApi/obj/*
+EntityFramework/bin/*
