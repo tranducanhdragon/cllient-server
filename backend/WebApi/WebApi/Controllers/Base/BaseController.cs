@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Core.Service;
 namespace WebApi.Controllers.Base
 {
     public class BaseController<TEntity> : ControllerBase
@@ -30,13 +30,17 @@ namespace WebApi.Controllers.Base
                 return Ok(ex);
             }
         }
-
+        /// <summary>
+        ///  vao gôgle meeting
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         [HttpPost("insert")]
-        public IActionResult Insert([FromBody] TEntity entity)
+        public IActionResult Insert([FromBody] NhanCongDto entity)
         {
             try
             {
-                var result = _service.Create(entity);
+                var result = _service.CreateCongNhan(entity);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -50,7 +54,7 @@ namespace WebApi.Controllers.Base
         {
             try
             {
-                var result = _service.GetById(id);
+                var result = _service.GetById((int)id);
                 return Ok(result);
             }
             catch (Exception ex)

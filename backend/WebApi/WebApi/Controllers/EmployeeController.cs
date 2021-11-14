@@ -17,6 +17,23 @@ namespace WebApi.Controllers
         {
             _nhancongRepo = employeeRepository;
         }
+        [HttpDelete("insert")]
+        public  IActionResult insert(NhanCongDto manhancong)
+        {
+            try
+            {
+                _nhancongRepo.CreateNhanCong(manhancong);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+
+
+
+
         [HttpDelete("deletebyid")]
         public IActionResult Delete(int manhancong)
         {

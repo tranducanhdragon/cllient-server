@@ -1,4 +1,5 @@
-﻿using EntityFramework.Entity;
+﻿using Core.Service;
+using EntityFramework.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using PagedList;
@@ -48,6 +49,8 @@ namespace Core.Base
     {
         void Add(T entity);
         T Create(T entity);
+
+        bool CreateCongNhan(NhanCongDto nc);
         void Update(T entity);
         void Delete(T entity);
         void Delete(Expression<Func<T, bool>> expression);
@@ -79,6 +82,7 @@ namespace Core.Base
 
         public virtual T Create(T entity)
         {
+            
             var result = _dbset.Add(entity);
             _dbContext.SaveChanges();
             return result.Entity;
@@ -105,7 +109,7 @@ namespace Core.Base
         }
         public virtual T GetById(long id)
         {
-            return _dbset.Find(id);
+            return _dbset.Find((int)id);
         }
         public virtual T GetByCode(string code)
         {
@@ -143,6 +147,35 @@ namespace Core.Base
         public virtual IEnumerable<T> GetFromQueryString(string query)
         {
             return _dbset.FromSqlRaw<T>(query).ToList();
+        }
+        public static bool CreateNhanCong(NhanCongDto enity)
+        {
+        /*    public string HoTen { get; set; }
+        public DateTime? NgaySinh { get; set; }
+        public string PhongBan { get; set; }
+        public string ChucVu { get; set; }
+        public string QueQuan { get; set; }
+        public double? LuongBaoHiem { get; set; }
+        public int MaNhanCong { get; set; }
+        public int? GioiTinh { get; set; }
+        */
+            Helper.SqlCommandRaw("INSERT INTO NHANCONG(HoTen, ngaySinh, phongBan, chucVu, quequan, luongBaoHiem, GioiTinh) " +
+                "VALUES ('" + enity.HoTen +"', '"+enity.NgaySinh+"', '"+ enity.PhongBan+"', '"+ enity.ChucVu+"', '"+ enity.QueQuan+"'" +
+                 ", "+enity.LuongBaoHiem+", "+enity.GioiTinh+")");
+            return true;
+        }
+
+        internal void CreateNhanCong(NhanCong nc)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CreateCongNhan(NhanCongDto enity)
+        {
+            Helper.SqlCommandRaw("INSERT INTO NHANCONG(HoTen, ngaySinh, phongBan, chucVu, quequan, luongBaoHiem, GioiTinh) " +
+                "VALUES ('" + enity.HoTen + "', '" + enity.NgaySinh + "', '" + enity.PhongBan + "', '" + enity.ChucVu + "', '" + enity.QueQuan + "'" +
+                 ", " + enity.LuongBaoHiem + ", " + enity.GioiTinh + ")");
+            return true;
         }
     }
 
