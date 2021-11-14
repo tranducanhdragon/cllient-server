@@ -3,5 +3,7 @@
 *.cache
 /.vs/*
 /Code/bin/*
+/Code/obj/*
 WebApi/obj/*
 EntityFramework/bin/*
+EntityFramework/obj/*

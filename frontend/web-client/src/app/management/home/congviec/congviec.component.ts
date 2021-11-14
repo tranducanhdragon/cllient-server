@@ -6,25 +6,25 @@ import { CongViec } from 'src/model/congviec/congviec';
 import { CongViecService } from 'src/service/congviec/congviec.service';
 
 @Component({
-  selector: 'app-employee',
+  selector: 'app-congviec',
   templateUrl: './congviec.component.html',
   styleUrls: ['./congviec.component.css']
 })
 export class CongViecComponent implements OnInit {
-  employees:Observable<CongViec[]> | undefined;
-  constructor(private employeeService:CongViecService,
+  congViecs:Observable<CongViec[]> | undefined;
+  constructor(private congViecService:CongViecService,
     private modalService:NgbModal) { }
 
   ngOnInit(): void {
-    this.getEmployees();
+    this.getCongViecs();
   }
-  getEmployees(){
-    this.employees = this.employeeService.getAllData('/api/CongViec/getall');
+  getCongViecs(){
+    this.congViecs = this.congViecService.getAllData('/api/CongViec/getall');
   }
   open(data:any){
     this.modalService.open(data);
   }
-  deleteEmployee(employee:CongViec){
+  deleteCongViec(congViec:CongViec){
 
   }
 }

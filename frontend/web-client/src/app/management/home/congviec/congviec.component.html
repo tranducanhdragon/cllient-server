@@ -16,29 +16,31 @@
   </head>
   <body>
     <div style="margin-right: auto;">
-      <a type="button" class="btn btn-primary">Tạo nhân viên mới</a>
+      <a type="button" class="btn btn-primary">Tạo công việc mới</a>
     </div>
     <div>
       <table class="table" >
         <thead>
           <tr>
-            <th scope="col">Họ tên</th>
-            <th scope="col">Ngày sinh</th>
-            <th scope="col">Giới tính</th>
-            <th scope="col">Phòng ban</th>
-            <th scope="col">Chức vụ</th>
-            <th scope="col">Quê quán</th>
-            <th scope="col">Lương bảo hiểm</th>
-            <th scope="col">Công cụ</th>
+            <th scope="col">Tên công việc</th>
+            <th scope="col">Định mục khoán</th>
+            <th scope="col">Đơn vị khoán</th>
+            <th scope="col">Hệ số khoán</th>
+            <th scope="col">Định mức lao động</th>
+            <th scope="col">Đơn giá</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees | async; let i = index">
-            <td>{{employee.tenCongViec}}</td>
-            <td>{{employee.dinhMucKhoan}}</td>
+          <tr *ngFor="let congViec of congViecs | async; let i = index">
+            <td>{{congViec.tenCongViec}}</td>
+            <td>{{congViec.dinhMucKhoan}}</td>
+            <td>{{congViec.donViKhoan}}</td>
+            <td>{{congViec.heSoKhoan}}</td>
+            <td>{{congViec.dinhMucLaoDong}}</td>
+            <td>{{congViec.donGia}}</td>
             <td>
                 <button class="btn btn-secondary"> Sửa</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee)">
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteCongViec(congViec)">
                   Xóa
                 </button>
             </td>
