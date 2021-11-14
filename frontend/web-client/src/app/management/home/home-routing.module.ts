@@ -7,6 +7,7 @@ import { HomeComponent } from './home.component';
 import { NKSLKComponent } from './nkslk/nkslk.component';
 import { ThongkeComponent } from './thongke/thongke.component';
 import { CongViecComponent } from './congviec/congviec.component';
+import { SanPhamComponent } from './sanpham/sanpham.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
           {path:'nkslk', component:NKSLKComponent},
           {path:'thongke', component:ThongkeComponent},
           {path:'congviec', component:CongViecComponent},
+          {path:'sanpham', component:SanPhamComponent},
         ]
     }
 ];

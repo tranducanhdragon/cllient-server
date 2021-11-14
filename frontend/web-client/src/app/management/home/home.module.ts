@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { NKSLKComponent } from './nkslk/nkslk.component';
 import { ThongkeComponent } from './thongke/thongke.component';
 import { CongViecComponent } from './congviec/congviec.component';
+import { SanPhamComponent } from './sanpham/sanpham.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CongViecComponent } from './congviec/congviec.component';
     EmployeeComponent,
     NKSLKComponent,
     ThongkeComponent,
-    CongViecComponent
+    CongViecComponent,
+    SanPhamComponent,
   ],
   imports: [
     CommonModule,
