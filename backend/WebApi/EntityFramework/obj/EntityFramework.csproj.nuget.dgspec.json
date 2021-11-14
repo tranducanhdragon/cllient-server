@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {}
+    "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {}
   },
   "projects": {
-    "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {
+    "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj",
+        "projectUniqueName": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj",
         "projectName": "EntityFramework",
-        "projectPath": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj",
-        "packagesPath": "C:\\Users\\DucAnhTran.VPN-CLIENT01\\.nuget\\packages\\",
-        "outputPath": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\obj\\",
+        "projectPath": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj",
+        "packagesPath": "C:\\Users\\jenny\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DucAnhTran.VPN-CLIENT01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jenny\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

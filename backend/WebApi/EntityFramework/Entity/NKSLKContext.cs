@@ -19,7 +19,7 @@ namespace EntityFramework.Entity
                 {
                     command.CommandText = query;
                     command.CommandType = CommandType.Text;
-
+                    /*command.CommandTimeout = 100; */// Huynh set them time out
                     context.Database.OpenConnection();
 
                     using (var result = command.ExecuteReader())
@@ -30,10 +30,13 @@ namespace EntityFramework.Entity
                         {
                             entities.Add(map(result));
                         }
+                       
 
                         return entities;
                     }
+
                 }
+
             }
         }
     }

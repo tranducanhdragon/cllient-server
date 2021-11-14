@@ -6,6 +6,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { HomeComponent } from './home.component';
 import { NKSLKComponent } from './nkslk/nkslk.component';
 import { ThongkeComponent } from './thongke/thongke.component';
+import { CongViecComponent } from './congviec/congviec.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,7 @@ const routes: Routes = [
           {path:'employee', component:EmployeeComponent},
           {path:'nkslk', component:NKSLKComponent},
           {path:'thongke', component:ThongkeComponent},
+          {path:'congviec', component:CongViecComponent},
         ]
     }
 ];

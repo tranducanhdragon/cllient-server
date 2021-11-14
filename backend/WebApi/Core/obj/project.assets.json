@@ -6387,19 +6387,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DucAnhTran.VPN-CLIENT01\\.nuget\\packages\\": {}
+    "C:\\Users\\jenny\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\Core\\Core.csproj",
-      "packagesPath": "C:\\Users\\DucAnhTran.VPN-CLIENT01\\.nuget\\packages\\",
-      "outputPath": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\Core\\obj\\",
+      "projectPath": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\jenny\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DucAnhTran.VPN-CLIENT01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jenny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6413,8 +6413,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {
-              "projectPath": "D:\\DaiHoc\\nam5\\ky1\\cn_client-server\\baitap\\btl\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj"
+            "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj": {
+              "projectPath": "C:\\Users\\jenny\\Desktop\\HocKi1Nam5\\CNClient-Server\\Code_Project\\cllient-server\\backend\\WebApi\\EntityFramework\\EntityFramework.csproj"
             }
           }
         }
@@ -6457,7 +6457,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
