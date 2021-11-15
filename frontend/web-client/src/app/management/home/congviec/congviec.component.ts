@@ -17,6 +17,8 @@ export class CongViecComponent implements OnInit {
   congviecmaxslk:CongViecMaxSLK={};
   congviecdongiamax:CongViec={};
   congviecdongiamin:CongViec={};
+  congvieclonhondontb:CongViec[]=[];
+  congviecnhohondontb:CongViec[]=[];
   congViecs:Observable<CongViec[]> | undefined;
   constructor(private congViecService:CongViecService,
     private modalService:NgbModal,
@@ -27,6 +29,8 @@ export class CongViecComponent implements OnInit {
     this.getCongViecMaxSLK();
     this.getCongViecDonGiaMax();
     this.getCongViecDonGiaMin();
+    this.getCongViecLonHonDonTB();
+    this.getCongViecNhoHonDonTB();
   }
   getCongViecs(){
     this.congViecs = this.congViecService.getAllData('/api/CongViec/getall');
@@ -64,7 +68,38 @@ export class CongViecComponent implements OnInit {
       }
     )
   }
-  deleteCongViec(congViec:CongViec){
 
+  getCongViecLonHonDonTB(){
+    this.thongkeService.getAllData('/api/ThongKe/getcongvieclonhondontb').subscribe(
+      (res:any) => {
+        if(res){
+          this.congvieclonhondontb = res;
+        }
+      }
+    )
+  }
+  getCongViecNhoHonDonTB(){
+    this.thongkeService.getAllData('/api/ThongKe/getcongviecnhohondontb').subscribe(
+      (res:any) => {
+        if(res){
+          this.congviecnhohondontb = res;
+        }
+      }
+    )
+  }
+
+  creatCongViec(){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
+
+  editCongViec(congviec: CongViec){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
+  deleteCongViec(congViec:CongViec){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
+
+  notifi(content:string){
+    window.alert(content);
   }
 }

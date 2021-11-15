@@ -23,9 +23,9 @@
   <body>
     <h1 id="title_page">QUẢN LÝ CÔNG VIỆC</h1>
     <div style="margin-right: auto; margin: 15px;">
-      <a type="button" class="btn btn-primary">Tạo công việc mới</a>
+      <a type="button" class="btn btn-primary" (click)="creatCongViec()">Tạo công việc mới</a>
     </div>
-    <section class="content-body">
+  <section class="content-body">
       <div class="card shadow-lg p-3 m-5 bg-white rounded">
           <div class="card-body">
               <div class="row d-flex flex-row">
@@ -44,6 +44,7 @@
           </div>
       </div>
   </section>
+
   <section class="content-body">
     <div class="card shadow-lg p-3 m-5 bg-white rounded">
         <div class="card-body">
@@ -117,6 +118,77 @@
             </div>
         </div>
     </div>
+  </section>
+
+  <section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá lớn hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let congviec of congvieclonhondontb">
+                        <td>{{congviec.maCongViec}}</td>
+                        <td>{{congviec.tenCongViec}}</td>
+                        <td>{{congviec.dinhMucKhoan}}</td>
+                        <td>{{congviec.donViKhoan}}</td>
+                        <td>{{congviec.heSoKhoan}}</td>
+                        <td>{{congviec.dinhMucLaoDong}}</td>
+                        <td>{{congviec.donGia}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá nhỏ hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let congviec of congviecnhohondontb">
+                          <td>{{congviec.maCongViec}}</td>
+                            <td>{{congviec.tenCongViec}}</td>
+                            <td>{{congviec.dinhMucKhoan}}</td>
+                            <td>{{congviec.donViKhoan}}</td>
+                            <td>{{congviec.heSoKhoan}}</td>
+                            <td>{{congviec.dinhMucLaoDong}}</td>
+                            <td>{{congviec.donGia}}</td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>
     <h2>Tất cả các công việc</h2>
     <div>
@@ -143,7 +215,7 @@
             <td>{{congViec.dinhMucLaoDong}}</td>
             <td>{{congViec.donGia}} VNĐ</td>
             <td>
-                <button class="btn btn-secondary" style="margin: 5px;"> Sửa</button>
+                <button class="btn btn-secondary" style="margin: 5px;" (click)="editCongViec(congViec)"> Sửa</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteCongViec(congViec)">
                   Xóa
                 </button>

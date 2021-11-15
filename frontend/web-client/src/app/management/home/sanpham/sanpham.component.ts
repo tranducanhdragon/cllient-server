@@ -24,7 +24,19 @@ export class SanPhamComponent implements OnInit {
   open(data:any){
     this.modalService.open(data);
   }
-  deleteSanPham(sanPham:SanPham){
+  
+  creatSanPham(){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
 
+  editSanPham(sanPham: SanPham){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
+  deleteSanPham(sanPham:SanPham){
+    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  }
+
+  notifi(content:string){
+    window.alert(content);
   }
 }

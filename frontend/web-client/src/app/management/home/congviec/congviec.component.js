@@ -9,3 +9,4 @@ function intSearchTable() {
         $('.dataTables_length').addClass('bs-select');
         });
 }
+
