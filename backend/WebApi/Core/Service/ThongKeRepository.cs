@@ -20,8 +20,18 @@ namespace Core.Service
         public string ChucVu { get; set; }
         public int GioiTinh { get; set; }
         public int NgayNKSLK { get; set; }
-        public TimeSpan? GioBatDau { get; set; }
-        public TimeSpan? GioKetThuc { get; set; }
+        public int MaNKSLK { get; set; }
+        public int MaCongViec { get; set; }
+    }
+    public class NhanCongThang
+    {
+        public string HoTen { get; set; }
+        public DateTime? NgaySinh { get; set; }
+        public string PhongBan { get; set; }
+        public string ChucVu { get; set; }
+        public int GioiTinh { get; set; }
+        public int NgayNKSLK { get; set; }
+        public int MaNhanCong { get; set; }
     }
     public interface IThongKeRepository
     {
@@ -30,6 +40,7 @@ namespace Core.Service
         CongViec GetCongViecDonGiaMin();
         IEnumerable<CongViec> GetCongViecLonHonDonTB();
         IEnumerable<CongViec> GetCongViecNhoHonDonTB();
+        IEnumerable<NhanCongThang> GetNhanCongsThang(int thang);
         IEnumerable<NKSLKCongNhan> GetNKSLKCongNhanThang(int thang);
     }
     public class ThongKeRepository : IThongKeRepository
@@ -123,27 +134,34 @@ namespace Core.Service
             });
             return result;
         }
-        public IEnumerable<NKSLKCongNhan> GetNKSLKCongNhanThang(int thang)
+
+        public IEnumerable<NhanCongThang> GetNhanCongsThang(int thang)
         {
             var result = Helper.RawSqlQuery("with NKSLK_Ngay(maNhanCong, maNKSLK, ngayNKSLK) as( " +
                 "select NhanCong.maNhanCong, NKSLK_ChiTiet.maNKSLK, datepart(month, NKSLK.ngay) from NhanCong " +
-                "join NKSLK_ChiTiet on NhanCong.maNhanCong = NKSLK_ChiTiet.maNhanCong "+
-                "join NKSLK on NKSLK_ChiTiet.maNKSLK = NKSLK.maNKSLK ) "+
-                "select NhanCong.hoTen, "+
-		        "NhanCong.ngaySinh, "+
-		        "NhanCong.phongBan, "+
-		        "NhanCong.chucVu, "+
-		        "NhanCong.gioiTinh, "+
-		        "NKSLK_Ngay.ngayNKSLK, "+
-		        "NKSLK_ChiTiet.gioBatDau, "+
-		        "NKSLK_ChiTiet.gioKetThuc "+
-                "from NhanCong "+
-                "join NKSLK_Ngay "+
-                "on NhanCong.maNhanCong = NKSLK_Ngay.maNhanCong "+
-                "join NKSLK_ChiTiet "+
-                "on NKSLK_ChiTiet.maNKSLK = NKSLK_Ngay.maNKSLK "+
-                "where NKSLK_Ngay.ngayNKSLK = "+ thang.ToString() + ";",
-                x => new NKSLKCongNhan
+                "join NKSLK_ChiTiet on NhanCong.maNhanCong = NKSLK_ChiTiet.maNhanCong " +
+                "join NKSLK on NKSLK_ChiTiet.maNKSLK = NKSLK.maNKSLK) " +
+                "select NhanCong.hoTen, " +
+                "NhanCong.ngaySinh, " +
+                "NhanCong.phongBan, " +
+                "NhanCong.chucVu, " +
+                "NhanCong.gioiTinh, " +
+                "NKSLK_Ngay.ngayNKSLK, " +
+                "NhanCong.maNhanCong " +
+                "from NhanCong " +
+                "join NKSLK_Ngay " +
+                "on NhanCong.maNhanCong = NKSLK_Ngay.maNhanCong " +
+                "join NKSLK_ChiTiet " +
+                "on NKSLK_ChiTiet.maNKSLK = NKSLK_Ngay.maNKSLK " +
+                "where NKSLK_Ngay.ngayNKSLK = " + thang.ToString() +
+                " group by NhanCong.hoTen, " +
+                "NhanCong.ngaySinh, " +
+                "NhanCong.phongBan, " +
+                "NhanCong.chucVu, " +
+                "NhanCong.gioiTinh, " +
+                "NKSLK_Ngay.ngayNKSLK, " +
+                "NhanCong.maNhanCong; ",
+                x => new NhanCongThang
                 {
                     HoTen=(string)x[0],
                     NgaySinh=(x[1] == DBNull.Value? new DateTime() : (DateTime?)x[1]),
@@ -151,10 +169,19 @@ namespace Core.Service
                     ChucVu=(string)x[3],
                     GioiTinh=(int)x[4],
                     NgayNKSLK=(int)x[5],
-                    GioBatDau=(TimeSpan?)x[6],
-                    GioKetThuc=(TimeSpan?)x[7]
+                    MaNhanCong=(int)x[6]
                 });
             return result;
+        }
+
+        public IEnumerable<NhanCong> GetNhanCongs(int thang)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<NKSLKCongNhan> GetNKSLKCongNhanThang(int thang)
+        {
+            throw new NotImplementedException();
         }
     }
 }

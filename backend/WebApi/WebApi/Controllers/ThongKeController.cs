@@ -82,8 +82,21 @@ namespace WebApi.Controllers
                 return Ok(ex);
             }
         }
-        [HttpPost("getnkslkcongnhanthang")]
-        public IActionResult GetNKSLKCongNhanThang([FromBody] int thang)
+        [HttpPost("getallnhancongthang")]
+        public IActionResult GetAllNhanCongThang([FromBody] int thang)
+        {
+            try
+            {
+                var result = _thongkeRepo.GetNhanCongsThang(thang);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        [HttpPost("getnkslknhancong")]
+        public IActionResult GetNKSLKNhanCong([FromBody] int thang)
         {
             try
             {
