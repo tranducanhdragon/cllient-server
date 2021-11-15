@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CongViec } from 'src/model/thongke/congviec';
 import { CongViecMaxSLK } from 'src/model/thongke/congviecmaxslk';
-import { NKSLKCongNhan } from 'src/model/thongke/nkslkcongnhan';
+import { NhanCongThang, NKSLKCongNhan } from 'src/model/thongke/nkslkcongnhan';
 import { ThongKeService } from 'src/service/thongke/thongke.service';
+import { DetailComponent } from './detail/detail.component';
 
 @Component({
   selector: 'app-thongke',
@@ -15,9 +17,10 @@ export class ThongkeComponent implements OnInit {
   congviecdongiamin:CongViec={};
   congvieclonhondontb:CongViec[]=[];
   congviecnhohondontb:CongViec[]=[];
-  nkslkcongnhanthang:NKSLKCongNhan[]=[];
+  nhancongthang:NhanCongThang[]=[];
   month:number=1;
-  constructor(private thongkeService:ThongKeService) { }
+  constructor(private thongkeService:ThongKeService,
+    private modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.getCongViecMaxSLK();
@@ -71,14 +74,17 @@ export class ThongkeComponent implements OnInit {
       }
     )
   }
-  getNKSLKCongNhanThang(){
-    debugger
-    this.thongkeService.post('/api/ThongKe/getnkslkcongnhanthang', this.month).subscribe(
+  getAllCongNhanThang(){
+    this.thongkeService.post('/api/ThongKe/getallnhancongthang', this.month).subscribe(
       (res:any) => {
         if(res){
-          this.nkslkcongnhanthang = res;
+          this.nhancongthang = res;
         }
       }
     )
+  }
+  openDetail(data:any){
+    let modalRef = this.modalService.open(DetailComponent);
+    modalRef.componentInstance.detail = data;
   }
 }

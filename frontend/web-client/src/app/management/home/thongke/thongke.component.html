@@ -172,7 +172,7 @@
                     <input [(ngModel)]="month" type="number" min="1" max="12">
                 </div>
                 <div class="col-3">
-                    <button class="btn bg-primary text-white" (click)="getNKSLKCongNhanThang()">Lấy</button>
+                    <button class="btn bg-primary text-white" (click)="getAllCongNhanThang()">Lấy</button>
                 </div>
             </div>
             <div class="row">
@@ -186,20 +186,22 @@
                         <th scope="col">Chức vụ</th>
                         <th scope="col">Giới tính</th>
                         <th scope="col">Tháng</th>
-                        <th scope="col">Giờ bắt đầu</th>
-                        <th scope="col">Giờ kết thúc</th>
+                        <th scope="col">Xem</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let nkslk of nkslkcongnhanthang">
-                        <td>{{nkslk.hoTen}}</td>
-                        <td>{{nkslk.ngaySinh}}</td>
-                        <td>{{nkslk.phongBan}}</td>
-                        <td>{{nkslk.chucVu}}</td>
-                        <td>{{nkslk.gioiTinh}}</td>
-                        <td>{{nkslk.ngayNKSLK}}</td>
-                        <td>{{nkslk.gioBatDau?.hours}}</td>
-                        <td>{{nkslk.gioKetThuc?.hours}}</td>
+                      <tr *ngFor="let nhancong of nhancongthang">
+                        <td>{{nhancong.hoTen}}</td>
+                        <td>{{nhancong.ngaySinh}}</td>
+                        <td>{{nhancong.phongBan}}</td>
+                        <td>{{nhancong.chucVu}}</td>
+                        <td>{{nhancong.gioiTinh}}</td>
+                        <td>{{nhancong.ngayNKSLK}}</td>
+                        <td>
+                            <button class="btn bg-light" (click)="openDetail(nhancong)">
+                                Chi tiết
+                            </button>
+                        </td>
                       </tr>
                     </tbody>
                 </table>

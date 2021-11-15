@@ -7,6 +7,15 @@ export class NKSLKCongNhan{
     chucVu?:string;
     gioiTinh?:number;
     ngayNKSLK?:number;
-    gioBatDau?:TimeSpan=TimeSpan.zero;
-    gioKetThuc?:TimeSpan=TimeSpan.zero;
+    maNKSLK?:number;
+    maCongViec?:number;
+}
+export class NhanCongThang{
+    hoTen?:string;
+    ngaySinh?:Date;
+    phongBan?:string;
+    chucVu?:string;
+    gioiTinh?:number;
+    ngayNKSLK?:number;
+    maNhanCong?:number;
 }

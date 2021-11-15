@@ -10,6 +10,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CommonModule } from '@angular/common';
 import { NKSLKComponent } from './nkslk/nkslk.component';
 import { ThongkeComponent } from './thongke/thongke.component';
+import { DetailComponent } from './thongke/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ThongkeComponent } from './thongke/thongke.component';
     EmployeeComponent,
     NKSLKComponent,
     ThongkeComponent,
+    DetailComponent,
   ],
   imports: [
     CommonModule,
