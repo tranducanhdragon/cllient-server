@@ -36,6 +36,17 @@ namespace EntityFramework.Entity
                 }
             }
         }
+        public static void SqlCommandRaw(string sqlQuery)
+        {
+            using (var context = new NKSLKContext())
+            using (var connection = context.Database.GetDbConnection())
+            using (var command = context.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = string.Format(sqlQuery);
+                connection.Open();
+                using (var reader = command.ExecuteReader()) { }
+            }
+        }
     }
     public partial class NKSLKContext : DbContext
     {
