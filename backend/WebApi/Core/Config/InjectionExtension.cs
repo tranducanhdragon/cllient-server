@@ -16,6 +16,10 @@ namespace Core.Config
             services.AddScoped<INhanCongRepository, NhanCongRepository>();
             services.AddScoped<INKSLKRepository, NKSLKRepository>(); 
             services.AddScoped<IThongKeRepository, ThongKeRepository>();
+            // huynh them san pham 
+            services.AddScoped<ISanPhamRepository, SanPhamRepository>();
+            // huynh them cong viec
+            services.AddScoped<ICongViecRepository, CongViecRepository>();
         }
     }
 }

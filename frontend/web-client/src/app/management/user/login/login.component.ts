@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit{
       (res:any)=>{
         if(res && res.success){
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Đăng nhập thành công'});
-          this.router.navigate(['/home']);
+          /* Huynh chuyen luon den cong viec */
+          this.router.navigate(['/home/congviec']);
         }
         else{
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Đăng nhập thất bại'});

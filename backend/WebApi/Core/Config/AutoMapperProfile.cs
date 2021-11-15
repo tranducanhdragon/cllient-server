@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Core.Service;
+using EntityFramework.Entity;
 
 namespace Core.Mapper
 {
@@ -6,6 +8,8 @@ namespace Core.Mapper
     {
         public AutoMapperProfile()
         {
+            CreateMap<CongViec, CongViecDto>();
+            CreateMap<CongViecDto, CongViec>();
         }
     }
 }

@@ -1,0 +1,276 @@
+<html>
+  <head>
+    <style type="text/css">
+      table, td, th {
+        border: 1px solid black;
+      }
+      
+      table {
+        width: 90%;
+        border-collapse: collapse;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h1, h2 {
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      
+      
+    </style>
+  </head>
+  <body>
+    <h1 id="title_page">QUẢN LÝ CÔNG VIỆC</h1>
+    <div style="margin-right: auto; margin: 15px;">
+      <a type="button" class="btn btn-primary" (click)="creatCongViec()">Tạo công việc mới</a>
+    </div>
+  <section class="content-body">
+      <div class="card shadow-lg p-3 m-5 bg-white rounded">
+          <div class="card-body">
+              <div class="row d-flex flex-row">
+                  <div class="col-6">
+                      <h6>Công việc có nhiều sản lượng khoán nhất:</h6>
+                  </div>
+                  <div class="col-6">
+                      <div class="row">
+                          <h6>Tên công việc: {{congviecmaxslk.tenCongViec}}</h6> 
+                      </div>
+                      <div class="row">
+                          <h6>Số lượng: {{congviecmaxslk.soLuong}}</h6>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá cao nhất:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{congviecdongiamax.maCongViec}}</td>
+                        <td>{{congviecdongiamax.tenCongViec}}</td>
+                        <td>{{congviecdongiamax.dinhMucKhoan}}</td>
+                        <td>{{congviecdongiamax.donViKhoan}}</td>
+                        <td>{{congviecdongiamax.heSoKhoan}}</td>
+                        <td>{{congviecdongiamax.dinhMucLaoDong}}</td>
+                        <td>{{congviecdongiamax.donGia}}</td>
+                        
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá nhỏ nhất:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{congviecdongiamin.maCongViec}}</td>
+                        <td>{{congviecdongiamin.tenCongViec}}</td>
+                        <td>{{congviecdongiamin.dinhMucKhoan}}</td>
+                        <td>{{congviecdongiamin.donViKhoan}}</td>
+                        <td>{{congviecdongiamin.heSoKhoan}}</td>
+                        <td>{{congviecdongiamin.dinhMucLaoDong}}</td>
+                        <td>{{congviecdongiamin.donGia}}</td>
+                       
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá lớn hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let congviec of congvieclonhondontb">
+                        <td>{{congviec.maCongViec}}</td>
+                        <td>{{congviec.tenCongViec}}</td>
+                        <td>{{congviec.dinhMucKhoan}}</td>
+                        <td>{{congviec.donViKhoan}}</td>
+                        <td>{{congviec.heSoKhoan}}</td>
+                        <td>{{congviec.dinhMucLaoDong}}</td>
+                        <td>{{congviec.donGia}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex flex-row">
+                <div class="col-6">
+                    <h5>Công việc có đơn giá nhỏ hơn đơn giá trung bình:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- table -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Mã công viêc</th>
+                        <th scope="col">Tên công việc</th>
+                        <th scope="col">Định mức khoán</th>
+                        <th scope="col">Đơn vị khoán</th>
+                        <th scope="col">Hệ số khoán</th>
+                        <th scope="col">Định mức lao động</th>
+                        <th scope="col">Đơn giá</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let congviec of congviecnhohondontb">
+                          <td>{{congviec.maCongViec}}</td>
+                            <td>{{congviec.tenCongViec}}</td>
+                            <td>{{congviec.dinhMucKhoan}}</td>
+                            <td>{{congviec.donViKhoan}}</td>
+                            <td>{{congviec.heSoKhoan}}</td>
+                            <td>{{congviec.dinhMucLaoDong}}</td>
+                            <td>{{congviec.donGia}}</td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </section>
+  <h2>Tất cả các công việc</h2>
+  <div>
+      <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">Mã công việc</th>
+            <th scope="col">Tên công việc</th>
+            <th scope="col">Định mục khoán</th>
+            <th scope="col">Đơn vị khoán</th>
+            <th scope="col">Hệ số khoán</th>
+            <th scope="col">Định mức lao động</th>
+            <th scope="col">Đơn giá</th>
+            <th scope="col">Sự kiện</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let congViec of congViecs | async; let i = index">
+            <td>{{congViec.maCongViec}}</td>
+            <td>{{congViec.tenCongViec}}</td>
+            <td>{{congViec.dinhMucKhoan}}</td>
+            <td>{{congViec.donViKhoan}}</td>
+            <td>{{congViec.heSoKhoan}}</td>
+            <td>{{congViec.dinhMucLaoDong}}</td>
+            <td>{{congViec.donGia}} VNĐ</td>
+            <td>
+                <button class="btn btn-secondary" style="margin: 5px;" (click)="editCongViec(congViec)"> Sửa</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteCongViec(congViec)">
+                  Xóa
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  
+  <!-- Them form  -->
+
+  <div id="modalOne" class="modal">
+    <div class="modal-content">
+      <div class="contact-form">
+        <a class="close" (click)="closePopup()">&times;</a>
+    <form action="/" id="form_create_cong_viec">
+      <h2>Tạo mới công việc</h2>
+      <div>
+        <input class="fname" type="text" name="name" [(ngModel)]="congViec.tenCongViec" placeholder="Tên công việc">
+        <input type="number" name="name" [(ngModel)]="congViec.dinhMucKhoan" placeholder="Định mục khoán">
+        <input type="text" name="name" [(ngModel)]="congViec.donViKhoan" placeholder="Đơn vị khoán">
+        <input type="number" name="name" [(ngModel)]="congViec.heSoKhoan" placeholder="Hệ số khoán">
+        <input type="number" name="name" [(ngModel)]="congViec.dinhMucLaoDong" placeholder="Định mức lao động">
+        <input type="number" name="name" [(ngModel)]="congViec.donGia" placeholder="Đơn giá">
+      </div>
+      <button type="submit" (click)="insertCongViecToDb()">Tạo công việc</button>
+      <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button>
+    </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <!-- <ng-template #modal let-modal>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xóa</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Bạn có muốn xóa hay không ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button (click)="deleteEmployee()" type="button" class="btn btn-primary">Xác nhận xóa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template> -->
+  </body>
+</html>
