@@ -12,10 +12,15 @@
         margin-left: auto;
         margin-right: auto;
       }
+      h1 {
+        margin-top: 15px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <div style="margin-right: auto;">
+    <h1 id="title_page">QUẢN LÝ SẢN PHẨM</h1>
+    <div style="margin-right: auto;  margin: 15px;">
       <a type="button" class="btn btn-primary">Tạo sản phẩm mới</a>
     </div>
     <div>
@@ -28,6 +33,7 @@
             <th scope="col">Quy cách</th>
             <th scope="col">Ngày đăng ký</th>
             <th scope="col">Ngày sản xuất</th>
+            <th scope="col">Sự kiện</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +45,7 @@
             <td>{{sanPham.ngayDangKy}}</td>
             <td>{{sanPham.ngaySanXuat}}</td>
             <td>
-                <button class="btn btn-secondary"> Sửa</button>
+                <button class="btn btn-secondary" style="margin: 5px;"> Sửa</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" 
                 (click)="deleteSanPham(sanPham)">
                   Xóa
