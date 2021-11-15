@@ -5,5 +5,5 @@ export interface CongViec {
     heSoKhoan?: number;
     dinhMucLaoDong?: number;
     donGia?: number;
-    maCongViec?:number;
+    maCongViec?:number; 
 }

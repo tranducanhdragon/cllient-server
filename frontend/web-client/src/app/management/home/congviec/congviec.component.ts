@@ -8,6 +8,9 @@ import { CongViecService } from 'src/service/congviec/congviec.service';
 import { CongViecMaxSLK } from 'src/model/thongke/congviecmaxslk';
 import { ThongKeService } from 'src/service/thongke/thongke.service';
 
+import { delay } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-congviec',
   templateUrl: './congviec.component.html',
@@ -20,9 +23,12 @@ export class CongViecComponent implements OnInit {
   congvieclonhondontb:CongViec[]=[];
   congviecnhohondontb:CongViec[]=[];
   congViecs:Observable<CongViec[]> | undefined;
+  congViec:CongViec={};
   constructor(private congViecService:CongViecService,
     private modalService:NgbModal,
     private thongkeService:ThongKeService) { }
+
+    
 
   ngOnInit(): void {
     this.getCongViecs();
@@ -88,16 +94,70 @@ export class CongViecComponent implements OnInit {
     )
   }
 
+  insertCongViecToDb() {
+    console.log(this.congViec);
+    // huynh can phai check kieu so, dung format
+    this.congViecService.post('/api/CongViec/createcongviec', this.congViec).subscribe(
+      (res:any) => {
+        if(res){
+          this.modalService.dismissAll();
+        }
+      }
+    )
+
+    //load lai data 
+    this.reloadAll();
+    // dong popup 
+    this.closePopup();
+
+    this.notifi("Thêm công việc thành công");
+  }
+
+
   creatCongViec(){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+    const app = document.getElementById("modalOne");
+    app!.style.display = "block";
+    
+  }
+  closePopup() {
+    const app = document.getElementById("modalOne");
+    app!.style.display = "none";
   }
 
   editCongViec(congviec: CongViec){
     this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
   }
-  deleteCongViec(congViec:CongViec){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  deleteCongViec(congViec: CongViec){
+    console.log(congViec);
+    
+    this.congViecService.delete('/api/CongViec/deleteCongViecWithId', (congViec.maCongViec??0).toString()).subscribe(
+      (res:any) => {
+        if(res){
+          this.modalService.dismissAll();
+        }
+      }
+    )
+
+    //load lai data 
+    this.reloadAll();
+    this.notifi("Đã xóa thành công");
   }
+
+  reloadAll(){
+
+    (async () => {
+
+      await delay(1000);
+      this.getCongViecs();
+      this.getCongViecMaxSLK();
+      this.getCongViecDonGiaMax();
+      this.getCongViecDonGiaMin();
+      this.getCongViecLonHonDonTB();
+      this.getCongViecNhoHonDonTB();
+  })();
+    
+  }
+
 
   notifi(content:string){
     window.alert(content);

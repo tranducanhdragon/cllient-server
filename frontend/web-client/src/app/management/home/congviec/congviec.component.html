@@ -17,6 +17,8 @@
         margin-top: 15px;
         text-align: center;
       }
+
+      
       
     </style>
   </head>
@@ -189,9 +191,9 @@
             </div>
         </div>
     </div>
-</section>
-    <h2>Tất cả các công việc</h2>
-    <div>
+  </section>
+  <h2>Tất cả các công việc</h2>
+  <div>
       <table class="table" >
         <thead>
           <tr>
@@ -223,7 +225,31 @@
           </tr>
         </tbody>
       </table>
+  </div>
+  
+  <!-- Them form  -->
+
+  <div id="modalOne" class="modal">
+    <div class="modal-content">
+      <div class="contact-form">
+        <a class="close" (click)="closePopup()">&times;</a>
+    <form action="/" id="form_create_cong_viec">
+      <h2>Tạo mới công việc</h2>
+      <div>
+        <input class="fname" type="text" name="name" [(ngModel)]="congViec.tenCongViec" placeholder="Tên công việc">
+        <input type="number" name="name" [(ngModel)]="congViec.dinhMucKhoan" placeholder="Định mục khoán">
+        <input type="text" name="name" [(ngModel)]="congViec.donViKhoan" placeholder="Đơn vị khoán">
+        <input type="number" name="name" [(ngModel)]="congViec.heSoKhoan" placeholder="Hệ số khoán">
+        <input type="number" name="name" [(ngModel)]="congViec.dinhMucLaoDong" placeholder="Định mức lao động">
+        <input type="number" name="name" [(ngModel)]="congViec.donGia" placeholder="Đơn giá">
+      </div>
+      <button type="submit" (click)="insertCongViecToDb()">Tạo công việc</button>
+      <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button>
+    </form>
+      </div>
     </div>
+  </div>
+  
   <!-- Modal -->
   <!-- <ng-template #modal let-modal>
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

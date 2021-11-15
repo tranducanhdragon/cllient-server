@@ -1,4 +1,3 @@
-
 function intSearchTable() {
     
     // Basic example
