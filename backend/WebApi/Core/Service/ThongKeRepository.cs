@@ -13,16 +13,6 @@ namespace Core.Service
         public string TenCongViec { get; set; }
         public int SoLuong { get; set; }
     }
-    public class NKSLKCongNhan{
-        public string HoTen { get; set; }
-        public DateTime? NgaySinh { get; set; }
-        public string PhongBan { get; set; }
-        public string ChucVu { get; set; }
-        public int GioiTinh { get; set; }
-        public int NgayNKSLK { get; set; }
-        public int MaNKSLK { get; set; }
-        public int MaCongViec { get; set; }
-    }
     public class NhanCongThang
     {
         public string HoTen { get; set; }
@@ -33,6 +23,26 @@ namespace Core.Service
         public int NgayNKSLK { get; set; }
         public int MaNhanCong { get; set; }
     }
+    public class NKSLKNhanCongThang
+    {
+        public string HoTen { get; set; }
+        public DateTime? NgaySinh { get; set; }
+        public string PhongBan { get; set; }
+        public string ChucVu { get; set; }
+        public string TenCongViec { get; set; }
+        public TimeSpan GioBatDau { get; set; }
+        public TimeSpan GioKetThuc { get; set; }
+    }
+    public class LuongNhanCongThangCongViec
+    {
+        public int MaNhanCong { get; set; }
+        public string HoTen { get; set; }
+        public string PhongBan { get; set; }
+        public string ChucVu { get; set; }
+        public int MaCongViec { get; set; }
+        public int Thang { get; set; }
+        public double Luong { get; set; }
+    }
     public interface IThongKeRepository
     {
         CongViecMaxSLK GetCongViecMaxSLK();
@@ -41,7 +51,9 @@ namespace Core.Service
         IEnumerable<CongViec> GetCongViecLonHonDonTB();
         IEnumerable<CongViec> GetCongViecNhoHonDonTB();
         IEnumerable<NhanCongThang> GetNhanCongsThang(int thang);
-        IEnumerable<NKSLKCongNhan> GetNKSLKCongNhanThang(int thang);
+        IEnumerable<NKSLKNhanCongThang> GetNKSLKNhanCongThang(int manhancong, int thang);
+        IEnumerable<CongViec> GetAllCongViec();
+        IEnumerable<LuongNhanCongThangCongViec> GetLuongNhanCongByThangCongViec(int thang, int macongviec);
     }
     public class ThongKeRepository : IThongKeRepository
     {
@@ -174,14 +186,102 @@ namespace Core.Service
             return result;
         }
 
-        public IEnumerable<NhanCong> GetNhanCongs(int thang)
+        public IEnumerable<NKSLKNhanCongThang> GetNKSLKNhanCongThang(int manhancong, int thang)
         {
-            throw new NotImplementedException();
+            var result = Helper.RawSqlQuery("with NKSLK_Ngay(maNhanCong, maNKSLK, maCongViec, ngayNKSLK) as( " +
+                "select NhanCong.maNhanCong, NKSLK_ChiTiet.maNKSLK, DanhMucKhoan_ChiTiet.maCongViec, datepart(month, NKSLK.ngay) from NhanCong " +
+                "join NKSLK_ChiTiet on NhanCong.maNhanCong = NKSLK_ChiTiet.maNhanCong " +
+                "join NKSLK on NKSLK_ChiTiet.maNKSLK = NKSLK.maNKSLK " +
+                "join DanhMucKhoan_ChiTiet on DanhMucKhoan_ChiTiet.maNKSLK = NKSLK.maNKSLK) " +
+                "select NhanCong.hoTen, " +
+                "NhanCong.ngaySinh, " +
+                "NhanCong.phongBan, " +
+                "NhanCong.chucVu, " +
+                "CongViec.tenCongViec, " +
+                "NKSLK_ChiTiet.gioBatDau, " +
+                "NKSLK_ChiTiet.gioKetThuc from NhanCong " +
+                "join NKSLK_Ngay on NhanCong.maNhanCong = NKSLK_Ngay.maNhanCong " +
+                "join NKSLK_ChiTiet on NKSLK_ChiTiet.maNKSLK = NKSLK_Ngay.maNKSLK " +
+                "join CongViec on CongViec.maCongViec = NKSLK_Ngay.maCongViec " +
+                "where NhanCong.maNhanCong = "+manhancong.ToString()+" and NKSLK_Ngay.ngayNKSLK = " + thang.ToString() +
+                " group by NhanCong.hoTen, " +
+                "NhanCong.ngaySinh, " +
+                "NhanCong.phongBan, " +
+                "NhanCong.chucVu, " +
+                "CongViec.tenCongViec, " +
+                "NKSLK_ChiTiet.gioBatDau, " +
+                "NKSLK_ChiTiet.gioKetThuc; ",
+                x => new NKSLKNhanCongThang
+                {
+                    HoTen = (string)x[0],
+                    NgaySinh = (x[1] == DBNull.Value ? new DateTime() : (DateTime?)x[1]),
+                    PhongBan = (string)x[2],
+                    ChucVu = (string)x[3],
+                    TenCongViec = (string)x[4],
+                    GioBatDau = (TimeSpan)x[5],
+                    GioKetThuc = (TimeSpan)x[6]
+                });
+            return result;
         }
-
-        public IEnumerable<NKSLKCongNhan> GetNKSLKCongNhanThang(int thang)
+        public IEnumerable<CongViec> GetAllCongViec()
         {
-            throw new NotImplementedException();
+            return _thongkeContext.CongViecs.ToList();
+        }
+        public IEnumerable<LuongNhanCongThangCongViec> GetLuongNhanCongByThangCongViec(int thang, int macongviec)
+        {
+            var result = Helper.RawSqlQuery("with CongViec_NhanCong(maCongViec, maNhanCong) as ( " +
+                "select CongViec.maCongViec, NKSLK_ChiTiet.maNhanCong " +
+                "from DanhMucKhoan_ChiTiet " +
+                "inner join NKSLK on DanhMucKhoan_ChiTiet.maNKSLK = NKSLK.maNKSLK " +
+                "inner join NKSLK_ChiTiet on NKSLK_ChiTiet.maNKSLK = NKSLK.maNKSLK " +
+                "inner join CongViec on DanhMucKhoan_ChiTiet.maCongViec = CongViec.maCongViec " +
+                "group by CongViec.maCongViec, NKSLK_ChiTiet.maNhanCong ) " +
+                "select NhanCongLuong.maNhanCong, " +
+                "NhanCongLuong.hoTen, " +
+                "NhanCongLuong.phongBan, " +
+                "NhanCongLuong.chucVu, " +
+                "NhanCongLuong.maCongViec, " +
+                "NhanCongLuong.thang," +
+                "sum(NhanCongLuong.luongNhanCong) " +
+                "from " +
+                "(select NhanCong.maNhanCong," +
+                "NhanCong.hoTen," +
+                "NhanCong.phongBan," +
+                "NhanCong.chucVu," +
+                "CongViec.maCongViec," +
+                "datepart(MONTH, NKSLK.ngay) as thang," +
+                "sum(CongViec.donGia * DanhMucKhoan_ChiTiet.sanLuongThucTe * ABS(DATEDIFF(HOUR, NKSLK_ChiTiet.gioKetThuc, NKSLK_ChiTiet.gioBatDau))) as luongNhanCong " +
+                "from NhanCong " +
+                "inner join CongViec_NhanCong on NhanCong.maNhanCong = CongViec_NhanCong.maNhanCong " +
+                "inner join CongViec on CongViec_NhanCong.maCongViec = CongViec.maCongViec " +
+                "inner join DanhMucKhoan_ChiTiet on CongViec.maCongViec = DanhMucKhoan_ChiTiet.maCongViec " +
+                "inner join NKSLK_ChiTiet on CongViec_NhanCong.maNhanCong = NKSLK_ChiTiet.maNhanCong " +
+                "inner join NKSLK on NKSLK.maNKSLK = NKSLK_ChiTiet.maNKSLK " +
+                "group by NhanCong.maNhanCong," +
+                "NhanCong.hoTen," +
+                "NhanCong.phongBan," +
+                "NhanCong.chucVu," +
+                "CongViec.maCongViec," +
+                "NKSLK.ngay)NhanCongLuong " +
+                "where NhanCongLuong.thang = " + thang.ToString() +
+                " and NhanCongLuong.maCongViec = " + macongviec.ToString() +
+                " group by NhanCongLuong.maNhanCong, " +
+                "NhanCongLuong.hoTen, " +
+                "NhanCongLuong.phongBan, " +
+                "NhanCongLuong.chucVu, " +
+                "NhanCongLuong.maCongViec, " +
+                "NhanCongLuong.thang; ",
+                x => new LuongNhanCongThangCongViec
+                {
+                    MaNhanCong = (int)x[0],
+                    HoTen = (string)x[1],
+                    PhongBan = (string)x[2],
+                    ChucVu = (string)x[3],
+                    MaCongViec = (int)x[4],
+                    Thang = (int)x[5],
+                    Luong = (double)x[6],
+                });
+            return result;
         }
     }
 }

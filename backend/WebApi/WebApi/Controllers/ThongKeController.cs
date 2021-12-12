@@ -82,8 +82,8 @@ namespace WebApi.Controllers
                 return Ok(ex);
             }
         }
-        [HttpPost("getallnhancongthang")]
-        public IActionResult GetAllNhanCongThang([FromBody] int thang)
+        [HttpGet("getallnhancongthang")]
+        public IActionResult GetAllNhanCongThang([FromQuery] int thang)
         {
             try
             {
@@ -95,12 +95,38 @@ namespace WebApi.Controllers
                 return Ok(ex);
             }
         }
-        [HttpPost("getnkslknhancong")]
-        public IActionResult GetNKSLKNhanCong([FromBody] int thang)
+        [HttpGet("getnkslknhancongthang")]
+        public IActionResult GetNKSLKNhanCongThang([FromQuery]int manhancong, [FromQuery]int thang)
         {
             try
             {
-                var result = _thongkeRepo.GetNKSLKCongNhanThang(thang);
+                var result = _thongkeRepo.GetNKSLKNhanCongThang(manhancong, thang);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        [HttpGet("getallcongviec")]
+        public IActionResult GetAllCongViec()
+        {
+            try
+            {
+                var result = _thongkeRepo.GetAllCongViec();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        [HttpGet("getluongnhancongbythangcongviec")]
+        public IActionResult GetAllCongViec([FromQuery] int thang, [FromQuery] int macongviec)
+        {
+            try
+            {
+                var result = _thongkeRepo.GetLuongNhanCongByThangCongViec(thang, macongviec);
                 return Ok(result);
             }
             catch (Exception ex)
