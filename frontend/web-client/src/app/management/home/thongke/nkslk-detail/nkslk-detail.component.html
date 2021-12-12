@@ -5,11 +5,13 @@
     </button>
 </div>
 <div class="modal-body">
-    <div class="row">
+    <div *ngFor="let nkslk of nkslkNhanCong" class="row">
+        <div class="line"></div>
         <div class="col-6">
             <div class="form-group">
                 <label>Họ và tên</label>
                 <input
+                    [value]="nkslk.hoTen"
                     type="text" 
                     class="form-control" 
                     placeholder="Họ và tên nhân công">
@@ -17,6 +19,7 @@
             <div class="form-group">
                 <label>Ngày sinh</label>
                 <input
+                    [value]="nkslk.ngaySinh"
                     type="text" 
                     class="form-control" 
                     placeholder="Ngày sinh">
@@ -24,6 +27,7 @@
             <div class="form-group">
                 <label>Phòng ban</label>
                 <input
+                    [value]="nkslk.phongBan"
                     type="text" 
                     class="form-control" 
                     placeholder="Phòng ban">
@@ -31,6 +35,7 @@
             <div class="form-group">
                 <label>Chức vụ</label>
                 <input
+                    [value]="nkslk.chucVu"
                     type="text" 
                     class="form-control" 
                     placeholder="Chức vụ">
@@ -40,18 +45,21 @@
             <div class="form-group">
                 <label>Công việc</label>
                 <input
+                    [value]="nkslk.tenCongViec"
                     type="text" 
                     class="form-control" placeholder="Công việc">
             </div>
             <div class="form-group">
                 <label>Giờ bắt đầu</label>
                 <input
+                    [value]="nkslk.gioBatDau?.hours"
                     type="text" 
                     class="form-control" placeholder="">
             </div>
             <div class="form-group">
                 <label>Giờ kết thúc</label>
                 <input
+                    [value]="nkslk.gioKetThuc?.hours"
                     type="text" 
                     class="form-control" placeholder="">
             </div>

@@ -10,7 +10,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CommonModule } from '@angular/common';
 import { NKSLKComponent } from './nkslk/nkslk.component';
 import { ThongkeComponent } from './thongke/thongke.component';
-import { DetailComponent } from './thongke/detail/detail.component';
+import { NKSLKDetailComponent } from './thongke/nkslk-detail/nkslk-detail.component';
 import { CongViecComponent } from './congviec/congviec.component';
 import { SanPhamComponent } from './sanpham/sanpham.component';
 
@@ -26,7 +26,7 @@ import { SanPhamComponent } from './sanpham/sanpham.component';
     ThongkeComponent,
     CongViecComponent,
     SanPhamComponent,
-    DetailComponent,
+    NKSLKDetailComponent,
   ],
   imports: [
     CommonModule,
