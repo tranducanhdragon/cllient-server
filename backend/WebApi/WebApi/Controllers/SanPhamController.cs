@@ -50,5 +50,19 @@ namespace WebApi.Controllers
         {
             return sanPhamRepository.createSanPham(dto);
         }
+
+        [HttpDelete("deleteSanPhamWithId/{maSanPham}")]
+        public bool deleteSanPhamWithId(int maSanPham)
+        {
+
+            return sanPhamRepository.DeleteSanPhamWithMa(maSanPham);
+        }
+
+        [HttpPut("updateSanPham")]
+        public bool UpdateCongViec([FromBody] SanPhamDtoUpdate dto)
+        {
+            return sanPhamRepository.UpdateSanPham(dto.MaSanPham, dto.TenSanPham, dto.SoDangKy, dto.HanSuDung, 
+                dto.QuyCach, dto.NgayDangKy, dto.NgaySanXuat);
+        }
     }
 }

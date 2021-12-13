@@ -259,10 +259,15 @@
     <form action="/" id="form_create_cong_viec">
       <h2>Sửa công việc</h2>
       <div>
+        <a>Tên công việc</a>
         <input class="fname" type="text" name="tenCongViec" [(ngModel)]="congViecNeedUpdate.tenCongViec" placeholder="Tên công việc" [value]="congViec.tenCongViec">
+        <a>Định mục khoán</a>
         <input type="number" name="dinhMucKhoan"  [(ngModel)]="congViecNeedUpdate.dinhMucKhoan" placeholder="Định mục khoán">
+        <a>Đơn vị khoán</a>
         <input type="text"  name="donViKhoan" [(ngModel)]="congViecNeedUpdate.donViKhoan" placeholder="Đơn vị khoán">
+        <a>Hệ số khoán</a>
         <input type="number" name="heSoKhoan" [(ngModel)]="congViecNeedUpdate.heSoKhoan" placeholder="Hệ số khoán">
+        <a>Định mức lao động</a>
         <input type="number"  name="dinhMucLaoDong" [(ngModel)]="congViecNeedUpdate.dinhMucLaoDong" placeholder="Định mức lao động">
         <!-- <input type="number"  name="donGia" [(ngModel)]="congViecNeedUpdate.donGia" placeholder="Đơn giá"> -->
       </div>

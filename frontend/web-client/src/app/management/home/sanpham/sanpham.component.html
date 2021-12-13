@@ -144,7 +144,7 @@
             <td>{{sanPham.ngayDangKy}}</td>
             <td>{{sanPham.ngaySanXuat}}</td>
             <td>
-                <button class="btn btn-secondary" style="margin: 5px;" (click)="editSanPham(sanPham)"> Sửa</button>
+                <button class="btn btn-secondary" style="margin: 5px;" (click)="editSanPham(sanPham)">Sửa</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" 
                 (click)="deleteSanPham(sanPham)">
                   Xóa
@@ -173,6 +173,34 @@
           <input  type="date" name="ngaySanXuat" [(ngModel)]="sanPhamNew.ngaySanXuat" placeholder="Ngày sản xuất">
         </div>
         <button type="submit" (click)="insertSanPhamToDb()">Tạo sản phẩm</button>
+        <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button>
+      </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="modalOneSanPhamUpdate" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          <a class="close" (click)="closePopup()">&times;</a>
+      <form action="/" id="form_create_cong_viec">
+        <h2>Sửa sản phẩm</h2>
+        <div>
+          <a>Tên sản phẩm</a>
+          <input class="fname" type="text" name="tenSanPham" [(ngModel)]="sanPhamUpdate.tenSanPham" placeholder="Tên sản phẩm">
+          <a>Số đăng ký</a>
+          <input  type="text" name="soDangKy" [(ngModel)]="sanPhamUpdate.soDangKy" placeholder="Số đăng ký">
+          <a>Hạn sử dụng</a>
+          <input  type="date" name="hanSuDung" [(ngModel)]="hanSuDung">
+          <a>Quy cách</a>
+          <input  type="text" name="quyCach" [(ngModel)]="sanPhamUpdate.quyCach" placeholder="Quy Cách">
+          <a>Ngày đăng ký</a>
+          <input  type="date" name="ngayDangKy" [(ngModel)]="ngayDangKy">
+          <a>Ngày sản xuất</a>
+          <input  type="date" name="ngaySanXuat" [(ngModel)]="ngaySanXuat">
+        </div>
+        <button type="submit" (click)="updateSanPhamToDb()">Sửa sản phẩm</button>
         <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button>
       </form>
         </div>

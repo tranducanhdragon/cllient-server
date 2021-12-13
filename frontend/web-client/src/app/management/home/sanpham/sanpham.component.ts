@@ -22,6 +22,11 @@ export class SanPhamComponent implements OnInit {
   soNamSuDung:number=1;
 
   sanPhamNew:SanPham = {};
+  sanPhamUpdate:SanPham = {};
+
+  hanSuDung?:string ="";
+  ngaySanXuat?:string="";
+  ngayDangKy?:string="";
   
   constructor(private sanPhamService:SanPhamService,
     private modalService:NgbModal) { }
@@ -79,13 +84,41 @@ export class SanPhamComponent implements OnInit {
   closePopup() {
     const app = document.getElementById("modalOneSanPham");
     app!.style.display = "none";
+
+    const appUpdateSp = document.getElementById("modalOneSanPhamUpdate");
+    appUpdateSp!.style.display = "none";
   }
 
   editSanPham(sanPham: SanPham){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+    console.log(sanPham);
+    this.sanPhamUpdate = sanPham;
+
+    this.hanSuDung =  this.sanPhamUpdate.hanSuDung?.toString().replace("T00:00:00","");
+    this.ngaySanXuat =  this.sanPhamUpdate.ngaySanXuat?.toString().replace("T00:00:00","");
+    this.ngayDangKy =  this.sanPhamUpdate.ngayDangKy?.toString().replace("T00:00:00","");
+
+    const app = document.getElementById("modalOneSanPhamUpdate");
+    app!.style.display = "block";
   }
   deleteSanPham(sanPham:SanPham){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+    
+
+    console.log(sanPham);
+    
+    this.sanPhamService.delete('/api/SanPham/deleteSanPhamWithId', (sanPham.maSanPham??0).toString()).subscribe(
+      (res:any) => {
+        console.log(res);
+        if(!res){
+          this.notifi("Sản phẩm này không xóa được.");
+        }
+        else {
+          this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          this.notifi("Đã xóa thành công");
+        }
+      }
+    )
   }
 
   notifi(content:string){
@@ -122,5 +155,29 @@ export class SanPhamComponent implements OnInit {
       this.getSanPhamHanSuDungTrenSoNam();
   })(); 
    
+  }
+
+  updateSanPhamToDb() {
+
+    this.sanPhamUpdate.hanSuDung = new Date(this.hanSuDung!);
+    this.sanPhamUpdate.ngayDangKy = new Date(this.ngayDangKy!);
+    this.sanPhamUpdate.ngaySanXuat= new Date(this.ngaySanXuat!);
+    console.log(this.sanPhamUpdate)
+    
+    this.sanPhamService.put('/api/SanPham/updateSanPham', this.sanPhamUpdate).subscribe(
+      (res:any) => {
+        if(res){
+          this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          // dong popup 
+          this.closePopup();
+      
+          this.notifi("Sửa sản phẩm thành công");
+        } else {
+          this.notifi("Sửa sản phẩm thất bại");
+        }
+      }
+    )
   }
 }

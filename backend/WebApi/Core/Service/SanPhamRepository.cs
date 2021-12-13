@@ -19,12 +19,24 @@ namespace Core.Service
         public DateTime? NgayDangKy { get; set; }
         public DateTime? NgaySanXuat { get; set; }
     }
+
+    public class SanPhamDtoUpdate
+    {
+        public int MaSanPham { get; set; }
+        public string TenSanPham { get; set; }
+        public string SoDangKy { get; set; }
+        public DateTime? HanSuDung { get; set; }
+        public string QuyCach { get; set; }
+        public DateTime? NgayDangKy { get; set; }
+        public DateTime? NgaySanXuat { get; set; }
+    }
     public interface ISanPhamRepository:IBaseRepository<SanPham>
     {
-        bool DeleteSanPham(int maSanPham);
+        bool DeleteSanPhamWithMa(int maSanPham);
         bool createSanPham(SanPhamDto sanPhamDto);
         IEnumerable<SanPham> getSanPhamCoNgayDangKyTruocNgay(string datetime);
         IEnumerable<SanPham> getSanPhamCoHanSuDungTrenNam(int soNam);
+        bool UpdateSanPham(int MaSanPham, string TenSanPham, string SoDangKy, DateTime? hanSuDung, string quyCach, DateTime? ngayDangKy, DateTime? ngaySanXuat);
     }
     class SanPhamRepository : BaseRepository<SanPham>, ISanPhamRepository
     {
@@ -50,9 +62,22 @@ namespace Core.Service
             }
         }
 
-        public bool DeleteSanPham(int maSanPham)
+        public bool DeleteSanPhamWithMa(int maSanPham)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var result = Helper.RawSqlQuery("delete from SanPham where SanPham.maSanPham = " + maSanPham,
+                x => new SanPhamDto());
+
+                Console.WriteLine("result " + result);
+
+                return result == null ? false : true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<SanPham> getSanPhamCoHanSuDungTrenNam(int soNam)
@@ -87,6 +112,30 @@ namespace Core.Service
                 NgaySanXuat = (DateTime) value[6]
             });
             return result;
+        }
+
+        public bool UpdateSanPham(int MaSanPham, string TenSanPham, 
+            string SoDangKy, DateTime? hanSuDung, string quyCach, DateTime? ngayDangKy, DateTime? ngaySanXuat)
+        {
+            try
+            {
+                var result = Helper.RawSqlQuery("update SanPham set tenSanPham = N'"+ TenSanPham +"'" +
+                    ", soDangKy = '" + SoDangKy + "'" +
+                    ", hanSuDung = '"+ hanSuDung +"'" +
+                    ", quyCach = N'"+ quyCach +"'" +
+                    ", ngayDangKy = '"+ ngayDangKy +"'" +
+                    ", ngaySanXuat = '"+ ngaySanXuat +"'" +
+                    " where maSanPham = " +MaSanPham,
+                x => new SanPhamDtoUpdate());
+
+                Console.WriteLine("result " + result);
+
+                return result == null ? false : true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }
