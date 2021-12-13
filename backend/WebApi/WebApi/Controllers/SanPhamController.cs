@@ -17,5 +17,33 @@ namespace WebApi.Controllers
         {
             sanPhamRepository= sanPham;
         }
+
+        [HttpGet("getSanPhamCoNgayDangKyTruocNgay")]
+        public IActionResult getSpCoNgayDangKyTruocNgay([FromQuery] string date)
+        {
+            try
+            {
+                var result = sanPhamRepository.getSanPhamCoNgayDangKyTruocNgay(date);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+
+        [HttpGet("getSanPhamCoHanSuDungTrenNam")]
+        public IActionResult getSanPhamCoHanSuDungTrenNam([FromQuery] int soNam)
+        {
+            try
+            {
+                var result = sanPhamRepository.getSanPhamCoHanSuDungTrenNam(soNam);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
     }
 }

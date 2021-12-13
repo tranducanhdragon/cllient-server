@@ -29,21 +29,91 @@
       <div class="card shadow-lg p-3 m-5 bg-white rounded">
           <div class="card-body">
               <div class="row d-flex flex-row">
-                  <div class="col-6">
+                  <div class="col-5">
                       <h5>Danh mục sản phẩm có ngày đăng ký trước ngày:</h5>
-                      <br/>
                   </div>
                   <div class="col-3">
-                    <input  type="date" min="1" max="12" type="date">
+                    <input [(ngModel)]="dateSanPhamDangKyTruocNgay" type="date"/>
                 </div>
                   <div class="col-3">
-                      <button class="btn bg-primary text-white" (click)="getSanPhamDangKyTruocNgay()">Lấy</button>
+                      <button class="btn bg-primary text-white" (click)="getSanPhamDangKyTruocNgay()">Tìm</button>
                   </div>
+              </div>
+
+              <div class="row">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Tên sản phẩm</th>
+                      <th scope="col">Số đăng ký</th>
+                      <th scope="col">Hạn sử dụng</th>
+                      <th scope="col">Quy cách</th>
+                      <th scope="col">Ngày đăng ký</th>
+                      <th scope="col">Ngày sản xuất</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let sanPham of sanPhamsBeforeDate">
+                      <td>{{sanPham.tenSanPham}}</td>
+                      <td>{{sanPham.soDangKy}}</td>
+                      <td>{{sanPham.hanSuDung}}</td>
+                      <td>{{sanPham.quyCach}}</td>
+                      <td>{{sanPham.ngayDangKy}}</td>
+                      <td>{{sanPham.ngaySanXuat}}</td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
               </div>
              
           </div>
       </div>
   </section>
+
+  <section class="content-body">
+    <div class="card shadow-lg p-3 m-5 bg-white rounded">
+        <div class="card-body">
+            <div class="row d-flex flex-row">
+                <div class="col-5">
+                    <h5>Danh mục các sản phẩm có hạn sử dụng trên số năm từ ngày sản xuất:</h5>
+                </div>
+                <div class="col-3">
+                  <input [(ngModel)]="soNamSuDung" type="number"/>
+              </div>
+                <div class="col-3">
+                    <button class="btn bg-primary text-white" (click)="getSanPhamHanSuDungTrenSoNam()">Tìm</button>
+                </div>
+            </div>
+
+            <div class="row">
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Số đăng ký</th>
+                    <th scope="col">Hạn sử dụng</th>
+                    <th scope="col">Quy cách</th>
+                    <th scope="col">Ngày đăng ký</th>
+                    <th scope="col">Ngày sản xuất</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sanPham of sanPhamsCoHanSuDung">
+                    <td>{{sanPham.tenSanPham}}</td>
+                    <td>{{sanPham.soDangKy}}</td>
+                    <td>{{sanPham.hanSuDung}}</td>
+                    <td>{{sanPham.quyCach}}</td>
+                    <td>{{sanPham.ngayDangKy}}</td>
+                    <td>{{sanPham.ngaySanXuat}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+           
+        </div>
+    </div>
+</section>
 
     <h2>Tất cả sản phẩm</h2>
     <div>
