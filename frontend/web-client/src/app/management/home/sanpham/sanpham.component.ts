@@ -5,6 +5,8 @@ import { DataResponse } from 'src/model/dataresponse';
 import { SanPham } from 'src/model/sanpham/sanpham';
 import { SanPhamService } from 'src/service/sanpham/sanpham.service';
 
+import { delay } from 'rxjs/operators';
+
 @Component({
   selector: 'app-sanpham',
   templateUrl: './sanpham.component.html',
@@ -18,6 +20,8 @@ export class SanPhamComponent implements OnInit {
 
   sanPhamsCoHanSuDung:SanPham[]=[];
   soNamSuDung:number=1;
+
+  sanPhamNew:SanPham = {};
   
   constructor(private sanPhamService:SanPhamService,
     private modalService:NgbModal) { }
@@ -67,7 +71,14 @@ export class SanPhamComponent implements OnInit {
   }
   
   creatSanPham(){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+    const app = document.getElementById("modalOneSanPham");
+    app!.style.display = "block";
+  }
+
+
+  closePopup() {
+    const app = document.getElementById("modalOneSanPham");
+    app!.style.display = "none";
   }
 
   editSanPham(sanPham: SanPham){
@@ -79,5 +90,37 @@ export class SanPhamComponent implements OnInit {
 
   notifi(content:string){
     window.alert(content);
+  }
+
+  insertSanPhamToDb(){
+    console.log(this.sanPhamNew);
+
+    this.sanPhamService.post('/api/SanPham/createsanpham', this.sanPhamNew).subscribe(
+      (res:any) => {
+        if(res){
+          this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          // dong popup 
+          this.closePopup();
+
+          this.notifi("Thêm sản phẩm thành công");
+        } else {
+          this.notifi("Thêm sản phẩm thất bại");
+        }
+      }
+    )
+
+  }
+
+  reloadAll(){
+    (async () => {
+
+      await delay(1000);
+      this.getSanPhams();
+      this.getSanPhamDangKyTruocNgay();
+      this.getSanPhamHanSuDungTrenSoNam();
+  })(); 
+   
   }
 }

@@ -45,5 +45,10 @@ namespace WebApi.Controllers
                 return Ok(ex);
             }
         }
+        [HttpPost("createsanpham")]
+        public bool CreateSanPham([FromBody] SanPhamDto dto)
+        {
+            return sanPhamRepository.createSanPham(dto);
+        }
     }
 }

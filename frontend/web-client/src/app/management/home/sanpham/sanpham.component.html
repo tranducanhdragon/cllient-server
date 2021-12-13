@@ -155,5 +155,29 @@
       </table>
     </div>
 
+    <div id="modalOneSanPham" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          <a class="close" (click)="closePopup()">&times;</a>
+      <form action="/" id="form_create_cong_viec">
+        <h2>Tạo mới sản phẩm</h2>
+        <div>
+          <input class="fname" type="text" name="tenSanPham" [(ngModel)]="sanPhamNew.tenSanPham" placeholder="Tên sản phẩm">
+          <input  type="text" name="soDK" [(ngModel)]="sanPhamNew.soDangKy" placeholder="Số đăng ký">
+          <a>Hạn sử dụng</a>
+          <input  type="date" name="hanSuDung" [(ngModel)]="sanPhamNew.hanSuDung" placeholder="Hạn sử dụng">
+          <input  type="text" name="quyCach" [(ngModel)]="sanPhamNew.quyCach" placeholder="Quy Cách">
+          <a>Ngày đăng ký</a>
+          <input  type="date" name="ngayDangKy" [(ngModel)]="sanPhamNew.ngayDangKy" placeholder="Ngày đăng ký">
+          <a>Ngày sản xuất</a>
+          <input  type="date" name="ngaySanXuat" [(ngModel)]="sanPhamNew.ngaySanXuat" placeholder="Ngày sản xuất">
+        </div>
+        <button type="submit" (click)="insertSanPhamToDb()">Tạo sản phẩm</button>
+        <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button>
+      </form>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
