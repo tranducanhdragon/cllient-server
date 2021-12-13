@@ -24,6 +24,7 @@ export class CongViecComponent implements OnInit {
   congviecnhohondontb:CongViec[]=[];
   congViecs:Observable<CongViec[]> | undefined;
   congViec:CongViec={};
+  congViecNeedUpdate:CongViec={};
   constructor(private congViecService:CongViecService,
     private modalService:NgbModal,
     private thongkeService:ThongKeService) { }
@@ -124,9 +125,35 @@ export class CongViecComponent implements OnInit {
     app!.style.display = "none";
   }
 
-  editCongViec(congviec: CongViec){
-    this.notifi("Tính năng đang hoàn thiệt! Vui lòng sử dụng sau ^^");
+  editCongViec(congViec: CongViec){
+
+    this.congViecNeedUpdate = congViec;
+    const app = document.getElementById("modalOneUpdate");
+    app!.style.display = "block";
   }
+  closePopupUpdateCongViec(){
+    const app = document.getElementById("modalOneUpdate");
+    app!.style.display = "none"
+  }
+
+  updateCongViec() {
+    
+    console.log(this.congViecNeedUpdate);
+    this.congViecService.put('/api/CongViec/updateCongViec', this.congViecNeedUpdate).subscribe(
+      (res:any) => {
+        if(res){
+          this.modalService.dismissAll();
+        }
+      }
+    )
+     //load lai data 
+     this.reloadAll();
+     // dong popup 
+     this.closePopupUpdateCongViec();
+ 
+     this.notifi("Sửa công việc thành công");
+  }
+
   deleteCongViec(congViec: CongViec){
     console.log(congViec);
     

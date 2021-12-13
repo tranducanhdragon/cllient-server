@@ -38,5 +38,12 @@ namespace WebApi.Controllers
 
             return congViecRepository.DeleteCongViecWithId(maCongViec);
         }
+
+        [HttpPut("updateCongViec")]
+        public bool UpdateCongViec([FromBody] CongViecDtoUpdate congViecDtoUpdate)
+        {
+            return congViecRepository.UpdateCongViec(congViecDtoUpdate.MaCongViec, congViecDtoUpdate.TenCongViec, 
+                congViecDtoUpdate.DinhMucKhoan, congViecDtoUpdate.DonViKhoan, congViecDtoUpdate.HeSoKhoan, congViecDtoUpdate.DinhMucLaoDong);
+        }
     }
 }
