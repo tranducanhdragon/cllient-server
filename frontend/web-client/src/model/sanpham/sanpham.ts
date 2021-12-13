@@ -1,4 +1,5 @@
 export interface SanPham {
+    maSanPham: number;
     tenSanPham: string;
     soDangKy: string;
     hanSuDung: Date;
