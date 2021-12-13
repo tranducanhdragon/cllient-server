@@ -19,23 +19,15 @@ namespace WebApi.Controllers
             congViecRepository = congViec;
         }
         [HttpPost("createcongviec")]
-        public IActionResult CreateCongViec([FromBody] CongViecDto dto)
+        public bool CreateCongViec([FromBody] CongViecDto dto)
         {
-            try
-            {
-                congViecRepository.CreateCongViec(dto);
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return Ok();
-            }
+            return congViecRepository.CreateCongViec(dto);
         }
 
         [HttpDelete("deleteCongViecWithId/{maCongViec}")]
         public bool deleteCongViecWithId(int maCongViec)
         {
-
+            
             return congViecRepository.DeleteCongViecWithId(maCongViec);
         }
 

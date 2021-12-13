@@ -12,6 +12,8 @@ import { SanPhamService } from 'src/service/sanpham/sanpham.service';
 })
 export class SanPhamComponent implements OnInit {
   sanPhams:Observable<SanPham[]> | undefined;
+  sanPhamsNgayDangKy:SanPham[]=[];
+  
   constructor(private sanPhamService:SanPhamService,
     private modalService:NgbModal) { }
 
@@ -21,6 +23,11 @@ export class SanPhamComponent implements OnInit {
   getSanPhams(){
     this.sanPhams = this.sanPhamService.getAllData('/api/SanPham/getall');
   }
+
+  getSanPhamDangKyTruocNgay() {
+
+  }
+
   open(data:any){
     this.modalService.open(data);
   }

@@ -102,16 +102,19 @@ export class CongViecComponent implements OnInit {
       (res:any) => {
         if(res){
           this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          // dong popup 
+          this.closePopup();
+
+          this.notifi("Thêm công việc thành công");
+        } else {
+          this.notifi("Thêm công việc thất bại");
         }
       }
     )
 
-    //load lai data 
-    this.reloadAll();
-    // dong popup 
-    this.closePopup();
-
-    this.notifi("Thêm công việc thành công");
+    
   }
 
 
@@ -143,15 +146,18 @@ export class CongViecComponent implements OnInit {
       (res:any) => {
         if(res){
           this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          // dong popup 
+          this.closePopupUpdateCongViec();
+      
+          this.notifi("Sửa công việc thành công");
+        } else {
+          this.notifi("Sửa công việc thất bại");
         }
       }
     )
-     //load lai data 
-     this.reloadAll();
-     // dong popup 
-     this.closePopupUpdateCongViec();
- 
-     this.notifi("Sửa công việc thành công");
+     
   }
 
   deleteCongViec(congViec: CongViec){
@@ -159,15 +165,18 @@ export class CongViecComponent implements OnInit {
     
     this.congViecService.delete('/api/CongViec/deleteCongViecWithId', (congViec.maCongViec??0).toString()).subscribe(
       (res:any) => {
-        if(res){
+        console.log(res);
+        if(!res){
+          this.notifi("Công việc này không xóa được.");
+        }
+        else {
           this.modalService.dismissAll();
+          //load lai data 
+          this.reloadAll();
+          this.notifi("Đã xóa thành công");
         }
       }
     )
-
-    //load lai data 
-    this.reloadAll();
-    this.notifi("Đã xóa thành công");
   }
 
   reloadAll(){
