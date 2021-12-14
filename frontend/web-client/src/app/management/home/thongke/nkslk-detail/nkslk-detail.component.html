@@ -5,6 +5,11 @@
     </button>
 </div>
 <div class="modal-body">
+    <div class="row d-flex">
+        <div class="col-6 mb-3">
+            <button class="btn bg-primary text-white" (click)="createNKSLK()">Thêm NKSLK</button>
+        </div>
+    </div>
     <div *ngFor="let nkslk of nkslkNhanCong" class="row">
         <div class="line"></div>
         <div class="col-6">

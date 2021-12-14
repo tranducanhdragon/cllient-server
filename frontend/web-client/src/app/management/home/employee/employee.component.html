@@ -17,7 +17,7 @@
   <body>
     <h1 id="title_page">QUẢN LÝ NHÂN CÔNG</h1>
     <div style="margin-right: auto; margin: 15px;">
-      <a type="button" class="btn btn-primary" (click)="createEmployee()">Tạo công việc mới</a>
+      <a type="button" class="btn btn-primary" (click)="createEmployee()">Tạo nhân công mới</a>
     </div>
     <div>
       <table class="table" >
@@ -188,7 +188,7 @@
         <input type="number" name="name" [(ngModel)]="employee.luongBaoHiem" placeholder="luongBaoHiem" value=100000>
       </div>
       
-      <button type="submit" (click)="submitCreateEmployee()">Tạo công việc</button>
+      <button type="submit" (click)="submitCreateEmployee()">Tạo nhân công</button>
       <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button> 
     </form>
       </div>

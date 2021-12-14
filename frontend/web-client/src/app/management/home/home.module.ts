@@ -13,6 +13,7 @@ import { ThongkeComponent } from './thongke/thongke.component';
 import { NKSLKDetailComponent } from './thongke/nkslk-detail/nkslk-detail.component';
 import { CongViecComponent } from './congviec/congviec.component';
 import { SanPhamComponent } from './sanpham/sanpham.component';
+import { NkslkCreateComponent } from './thongke/nkslk-create/nkslk-create.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SanPhamComponent } from './sanpham/sanpham.component';
     CongViecComponent,
     SanPhamComponent,
     NKSLKDetailComponent,
+    NkslkCreateComponent,
   ],
   imports: [
     CommonModule,

@@ -15,59 +15,54 @@
     </style>
   </head>
   <body>
-    <div style="margin-right: auto;">
-        <a type="button" class="btn btn-primary">Tạo nhật ký sản lượng khoán mới</a>
-    </div>
-    <table class="table" >
-    <thead>
-      <tr>
-        <th scope="col">Ngày tạo</th>
-        <th scope="col">Mã NKSLK</th>
-        <th scope="col">Danh mục khoán chi tiết</th>
-        <th scope="col">Nhật ký sản lượng khoán chi tiết</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let NKSLK of NKSLKs | async; let i = index">
-        <td>{{NKSLK.ngay}}</td>
-        <td>{{NKSLK.maNkslk}}</td>
-        <td>{{NKSLK.danhMucKhoanChiTiets}}</td>
-        <td>{{NKSLK.nkslkChiTiets}}</td>
-        <!-- ngay?: Date,
-        maNkslk?: number,
-        danhMucKhoanChiTiets?: string,
-        nkslkChiTiets?: string -->
-        <td>
-            <button class="btn btn-secondary"> Sửa</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" > 
-                <!-- (click)="deleteEmployee(employee)" -->
-              Xóa
-            </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- Modal -->
-  <!-- <ng-template #modal let-modal>
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Xóa</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <section class="content-body">
+      <div class="card shadow-lg p-3 m-5 bg-white rounded">
+          <div class="card-body">
+              <div class="row d-flex flex-row">
+                  <div class="col-6">
+                      <h5>NKSLK của công nhân theo tháng:</h5>
+                      <br/>
+                  </div>
+                  <div class="col-3">
+                      <input [(ngModel)]="month" type="number" min="1" max="12">
+                  </div>
+                  <div class="col-3">
+                      <button class="btn bg-primary text-white" (click)="getAllCongNhanThang()">Lấy</button>
+                  </div>
+              </div>
+              <div class="row">
+                  <!-- table -->
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Họ tên</th>
+                          <th scope="col">Ngày sinh</th>
+                          <th scope="col">Phòng ban</th>
+                          <th scope="col">Chức vụ</th>
+                          <th scope="col">Giới tính</th>
+                          <th scope="col">Tháng</th>
+                          <th scope="col">Xem</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let nhancong of nhancongthang">
+                          <td>{{nhancong.hoTen}}</td>
+                          <td>{{nhancong.ngaySinh}}</td>
+                          <td>{{nhancong.phongBan}}</td>
+                          <td>{{nhancong.chucVu}}</td>
+                          <td>{{nhancong.gioiTinh}}</td>
+                          <td>{{nhancong.ngayNKSLK}}</td>
+                          <td>
+                              <button class="btn bg-light" (click)="openNKSLKDetail(nhancong)">
+                                  Chi tiết
+                              </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
           </div>
-          <div class="modal-body">
-            Bạn có muốn xóa hay không ?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button (click)="deleteEmployee()" type="button" class="btn btn-primary">Xác nhận xóa</button>
-          </div>
-        </div>
       </div>
-    </div>
-  </ng-template> -->
+  </section>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<div class="modal-body">
+    <div>
+        <div class="line m-2"></div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label>Công việc</label>
+                <br>
+                <select id="ddCongViec">
+                    <option *ngFor="let congviec of congviecs"  [value]="congviec.maCongViec">
+                        {{congviec.tenCongViec}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Giờ bắt đầu</label>
+                    <input
+                        
+                        [(ngModel)]="nkslk.gioBatDau"
+                        type="text" 
+                        class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>Giờ kết thúc</label>
+                    <input
+                        [(ngModel)]="nkslk.gioKetThuc"
+                        type="text" 
+                        class="form-control" placeholder="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-3 d-flex justify-content">
+            <button class="btn bg-primary text-white" (click)="submitCreateNKSLK()">Tạo</button>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NhanCongThang, NKSLKNhanCong } from 'src/model/thongke/nkslknhancong';
 import { ThongKeService } from 'src/service/thongke/thongke.service';
+import { NkslkCreateComponent } from '../nkslk-create/nkslk-create.component';
 
 @Component({
   selector: 'app-detail',
@@ -13,7 +14,8 @@ export class NKSLKDetailComponent implements OnInit {
   @Input() month:number=0;
   nkslkNhanCong:NKSLKNhanCong[]=[];
   constructor(public activeModal: NgbActiveModal,
-    private thongkeService:ThongKeService) {
+    private thongkeService:ThongKeService,
+    private modalService:NgbModal) {
 
   }
 
@@ -28,5 +30,11 @@ export class NKSLKDetailComponent implements OnInit {
         }
       }
     )
+  }
+  createNKSLK(){
+    let modalRef = this.modalService.open(NkslkCreateComponent);
+    modalRef.componentInstance.month = this.month;
+    modalRef.componentInstance.detail = this.detail;
+
   }
 }
