@@ -111,6 +111,7 @@ namespace Core.Base
         {
             return _dbset.Find((int)id);
         }
+        
         public virtual T GetByCode(string code)
         {
             return _dbset.Find(code);
