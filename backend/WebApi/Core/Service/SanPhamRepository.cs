@@ -103,10 +103,10 @@ namespace Core.Service
             var result = Helper.RawSqlQuery(sql,
             value => new SanPham
             {
-                TenSanPham = (string) value[0],
-                SoDangKy = (string) value[1],
-                HanSuDung = (DateTime)value[2],
-                QuyCach = value[3] is System.DBNull ? "Không có" : (string) value[3] ,
+                TenSanPham = (string) (value[0] is null?"":value[0]),
+                SoDangKy = (string) (value[1] is null?"":value[1]),
+                HanSuDung = (DateTime)(value[2] is null? new DateTime() : value[2]),
+                QuyCach = (string)(value[3] is DBNull? "": value[3]),
                 NgayDangKy = (DateTime) value[4],
                 MaSanPham = (int) value[5],
                 NgaySanXuat = (DateTime) value[6]
