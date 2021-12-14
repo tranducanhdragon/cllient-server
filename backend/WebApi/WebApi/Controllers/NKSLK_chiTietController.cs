@@ -6,19 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Controllers.Base;
-
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class NKSLKController : BaseController<Nkslk>
+    public class NKSLK_chiTietController : BaseController<Nkslk>
     {
         INKSLKRepository _NKSLKRepo;
-        public NKSLKController(INKSLKRepository nKSLK) : base(nKSLK)
+        public NKSLK_chiTietController(INKSLKRepository nKSLK) : base(nKSLK)
         {
             _NKSLKRepo = nKSLK;
         }
-        
-    }
-    
 
+    }
 }

@@ -15,13 +15,15 @@
     </style>
   </head>
   <body>
-    <div style="margin-right: auto;">
-      <a type="button" class="btn btn-primary">Tạo nhân viên mới</a>
+    <h1 id="title_page">QUẢN LÝ NHÂN CÔNG</h1>
+    <div style="margin-right: auto; margin: 15px;">
+      <a type="button" class="btn btn-primary" (click)="createEmployee()">Tạo công việc mới</a>
     </div>
     <div>
       <table class="table" >
         <thead>
           <tr>
+            <th scope="col">ID nhân công</th>
             <th scope="col">Họ tên</th>
             <th scope="col">Ngày sinh</th>
             <th scope="col">Giới tính</th>
@@ -33,17 +35,58 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees | async; let i = index">
-            <td>{{employee.hoTen}}</td>
-            <td>{{employee.ngaySinh}}</td>
-            <td>{{employee.gioiTinh}}</td>
-            <td>{{employee.phongBan}}</td>
-            <td>{{employee.chucVu}}</td>
-            <td>{{employee.queQuan}}</td>
-            <td>{{employee.luongBaoHiem}}</td>
+          <tr *ngFor="let employee1 of employees | async; let i = index">
+            <td>{{employee1.maNhanCong}}</td>
+            <td>{{employee1.hoTen}}</td>
+            <td>{{employee1.ngaySinh}}</td>
+            <td>{{employee1.gioiTinh}}</td>
+            <td>{{employee1.phongBan}}</td>
+            <td>{{employee1.chucVu}}</td>
+            <td>{{employee1.queQuan}}</td>
+            <td>{{employee1.luongBaoHiem}}</td>
             <td>
-                <button class="btn btn-secondary"> Sửa</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee)">
+                <button class="btn btn-secondary" data-toggle="modal" (click)="edit_employee(employee1)"> Sửa</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee1)">
+                  <!-- data-toggle="modal" -->
+                  Xóa
+                </button>
+                
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1 id="title_page">NHÂN CÔNG SẮP NGHỈ HƯU</h1>
+    <div>
+      <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">ID nhân công</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Phòng ban</th>
+            <th scope="col">Chức vụ</th>
+            <th scope="col">Quê quán</th>
+            <th scope="col">Lương bảo hiểm</th>
+            <th scope="col">Công cụ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee1 of employeesSapNghiHuu | async; let i = index">
+            <td>{{employee1.maNhanCong}}</td>
+            <td>{{employee1.hoTen}}</td>
+            <td>{{employee1.ngaySinh}}</td>
+            <td>{{employee1.gioiTinh}}</td>
+            <td>{{employee1.phongBan}}</td>
+            <td>{{employee1.chucVu}}</td>
+            <td>{{employee1.queQuan}}</td>
+            <td>{{employee1.luongBaoHiem}}</td>
+            <td>
+                <button class="btn btn-secondary" data-toggle="modal" (click)="edit_employee(employee1)"> Sửa</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee1)">
+                  <!-- data-toggle="modal" -->
                   Xóa
                 </button>
             </td>
@@ -51,27 +94,131 @@
         </tbody>
       </table>
     </div>
-  <!-- Modal -->
-  <!-- <ng-template #modal let-modal>
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Xóa</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Bạn có muốn xóa hay không ?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button (click)="deleteEmployee()" type="button" class="btn btn-primary">Xác nhận xóa</button>
-          </div>
-        </div>
+
+    
+    <h1 id="title_page">NHÂN CÔNG CÓ CA 3</h1>
+    <div>
+      <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">ID nhân công</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Phòng ban</th>
+            <th scope="col">Chức vụ</th>
+            <th scope="col">Quê quán</th>
+            <th scope="col">Lương bảo hiểm</th>
+            <th scope="col">Công cụ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee1 of employeesCa3 | async; let i = index">
+            <td>{{employee1.maNhanCong}}</td>
+            <td>{{employee1.hoTen}}</td>
+            <td>{{employee1.ngaySinh}}</td>
+            <td>{{employee1.gioiTinh}}</td>
+            <td>{{employee1.phongBan}}</td>
+            <td>{{employee1.chucVu}}</td>
+            <td>{{employee1.queQuan}}</td>
+            <td>{{employee1.luongBaoHiem}}</td>
+            <td>
+                <button class="btn btn-secondary" data-toggle="modal" (click)="edit_employee(employee1)"> Sửa</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee1)">
+                  <!-- data-toggle="modal" -->
+                  Xóa
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1 id="title_page">NHÂN CÔNG CÓ ĐỘ TUỔI TỪ 30 ĐẾN 45</h1>
+    <div>
+      <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">ID nhân công</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Phòng ban</th>
+            <th scope="col">Chức vụ</th>
+            <th scope="col">Quê quán</th>
+            <th scope="col">Lương bảo hiểm</th>
+            <th scope="col">Công cụ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee1 of employees30_45 | async; let i = index">
+            <td>{{employee1.maNhanCong}}</td>
+            <td>{{employee1.hoTen}}</td>
+            <td>{{employee1.ngaySinh}}</td>
+            <td>{{employee1.gioiTinh}}</td>
+            <td>{{employee1.phongBan}}</td>
+            <td>{{employee1.chucVu}}</td>
+            <td>{{employee1.queQuan}}</td>
+            <td>{{employee1.luongBaoHiem}}</td>
+            <td>
+                <button class="btn btn-secondary" data-toggle="modal" (click)="edit_employee(employee1)"> Sửa</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteEmployee(employee1)">
+                  <!-- data-toggle="modal" -->
+                  Xóa
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div id="modalOne" class="modal">
+    <div class="modal-content">
+      <div class="contact-form">
+        <a class="close" (click)="closePopup()">&times;</a>
+    <form action="/" id="form_create_employee">
+      <h2>Tạo mới nhân công</h2>
+      <div>
+        <input class="fname" type="text" name="name" [(ngModel)]="employee.hoTen" placeholder="Họ tên" value="Nguyễn Hoàng Minh Anh">
+        <input type="date" name="name" [(ngModel)]="employee.ngaySinh" value="1/1/2000">
+        <input type="number" name="name" [(ngModel)]="employee.gioiTinh" placeholder="gioiTinh" value=0>
+        <input type="text" name="name" [(ngModel)]="employee.phongBan" placeholder="phongBan" value="Nhân Sự">
+        <input type="text" name="name" [(ngModel)]="employee.chucVu" placeholder="chuc vu" value="Nhân Viên">
+        <input type="text" name="name" [(ngModel)]="employee.queQuan" placeholder="queQuan" value="Hà Nội">
+        <input type="number" name="name" [(ngModel)]="employee.luongBaoHiem" placeholder="luongBaoHiem" value=100000>
+      </div>
+      
+      <button type="submit" (click)="submitCreateEmployee()">Tạo công việc</button>
+      <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button> 
+    </form>
       </div>
     </div>
-  </ng-template> -->
+  </div>
+
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="contact-form">
+        <a class="close" (click)="closePopup()">&times;</a>
+    <form action="/" id="edit_employee">
+      <h2>Sửa nhân công</h2>
+      <div>
+        <input type="text" id="edit_holder" readonly>
+        <input id="edit_name" type="text">
+        <input type="date" id="edit_ngaySinh" >
+        <input type="number" id="edit_gioiTinh"  >
+        <input type="text" id="edit_phongBan" >
+        <input type="text" id="edit_chucVu" >
+        <input type="text" id="edit_queQuan" >
+        <input type="number" id="edit_luongBaoHiem" >
+      </div>
+      
+      <button type="submit" (click)="submitEditEmployee()">Tạo công việc</button>
+      <button style="margin-top: 15px;" (click)="closePopup()">Hủy</button> 
+    </form>
+      </div>
+    </div>
+  </div>
+  
   </body>
 </html>

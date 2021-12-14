@@ -43,6 +43,13 @@ export  class BaseService<T> {
             .pipe(catchError(err => this.handleError(err, this._injector)));
 
     }
+    deleteById(url: string, id: string): Observable<DataResponse> {
+        const apiUrl = BaseURL+ url + id ;
+        console.log(apiUrl);
+        return this._http.delete<DataResponse>(apiUrl)
+            .pipe(catchError(err => this.handleError(err, this._injector)));
+
+    }
 
     deleteMany(url: string, listId: any): Observable<DataResponse> {
         const apiUrl = BaseURL+url + `/deletemany`;

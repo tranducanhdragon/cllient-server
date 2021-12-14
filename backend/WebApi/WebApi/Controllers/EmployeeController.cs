@@ -17,12 +17,14 @@ namespace WebApi.Controllers
         {
             _nhancongRepo = employeeRepository;
         }
-        [HttpDelete("insert")]
-        public  IActionResult insert(NhanCongDto manhancong)
+        
+
+        [HttpPost("updateEmployee")]
+        public IActionResult update([FromBody] NhanCongDto entity)
         {
             try
             {
-                _nhancongRepo.CreateNhanCong(manhancong);
+                _nhancongRepo.EditNhanCong(entity);
                 return Ok();
             }
             catch (Exception ex)
@@ -30,8 +32,76 @@ namespace WebApi.Controllers
                 return Ok(ex);
             }
         }
+        [HttpPost("insertNhanCong")]
+        public IActionResult insert([FromBody] NhanCongDto entity)
+        {
+            try
+            {
+                var result = _nhancongRepo.CreateCongNhan(entity);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
 
+        /*
+        [HttpGet("nhanCongSapNghiHuu")]
+        public IActionResult nhanCongSapNghiHuu()
+        {
+            try
+            {
+                var result = _nhancongRepo.nhanCongSapNghiHuu();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        */
+        [HttpGet("nhanCongSapNghiHuu")]
+        public IActionResult nhanCongSapNghiHuu()
+        {
+            try
+            {
+                var result = _nhancongRepo.nhanCongSapNghiHuu();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
 
+        [HttpGet("nhanCong30_45")]
+        public IActionResult nhanCong30_45()
+        {
+            try
+            {
+                var result = _nhancongRepo.nhanCong30_45();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+
+        [HttpGet("nhanCongCa3")]
+        public IActionResult nhanCongCa3()
+        {
+            try
+            {
+                var result = _nhancongRepo.nhanCong30_45();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
 
 
         [HttpDelete("deletebyid")]
@@ -39,13 +109,22 @@ namespace WebApi.Controllers
         {
             try
             {
-                _nhancongRepo.DeleteNhanCong(manhancong);
-                return Ok();
+                bool canDelete = _nhancongRepo.DeleteNhanCong(manhancong);
+                if (canDelete == true) { 
+                    return Ok();
+                }
+                else
+                {
+                    return Ok(false);
+                }
             }
             catch (Exception ex)
             {
                 return Ok(ex);
             }
         }
+
+
+
     }
 }

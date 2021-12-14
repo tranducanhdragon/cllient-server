@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFramework.Entity
 {
+
     [Table("NKSLK_ChiTiet")]
     [Index(nameof(MaNkslk), Name = "ind_maNKSLK")]
     [Index(nameof(MaNhanCong), Name = "ind_maNhanCong")]
