@@ -13,6 +13,9 @@ namespace Core.Mapper
             //them map san pham
             CreateMap<SanPham, SanPhamDto>();
             CreateMap<SanPhamDto, SanPham>();
+
+            CreateMap<NkslkChiTiet, NKSLKChiTietCreate>();
+            CreateMap<NKSLKChiTietCreate, NkslkChiTiet>();
         }
     }
 }

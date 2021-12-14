@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Controllers.Base;
+using System.Text.Json;
 
 namespace WebApi.Controllers
 {
@@ -17,8 +18,24 @@ namespace WebApi.Controllers
         {
             _NKSLKRepo = nKSLK;
         }
-        
-    }
-    
+        [HttpGet("getallnkslkchitiets")]
+        public IActionResult GetAllNKSLKChiTiets()
+        {
+            try
+            {
+                var result = _NKSLKRepo.GetAllNKSLKChiTiets();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        [HttpPost("insertnkslk")]
+        public bool InsertNKSLK([FromBody] NKSLKChiTietCreate nkslkchitietcreate)
+        {
+            return _NKSLKRepo.CreateNKSLK(nkslkchitietcreate);
+        }
 
+    }
 }

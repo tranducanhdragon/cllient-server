@@ -12,7 +12,7 @@ namespace Core.Service
     {
         bool DeleteNKSLK(int ma);
     }
-    public class INKSLKChiTietRepository : BaseRepository<Nkslk>, INKSLKRepository
+    public class INKSLKChiTietRepository : BaseRepository<NkslkChiTiet>, INKSLK_chiTietRepository
     {
         private NKSLKContext _NKSLKContext;
 
