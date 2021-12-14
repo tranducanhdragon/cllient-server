@@ -1,14 +1,13 @@
 import { TimeSpan } from "./timespand";
 
-export class NKSLKCongNhan{
+export class NKSLKNhanCong{
     hoTen?:string;
     ngaySinh?:Date;
     phongBan?:string;
     chucVu?:string;
-    gioiTinh?:number;
-    ngayNKSLK?:number;
-    maNKSLK?:number;
-    maCongViec?:number;
+    tenCongViec?:string;
+    gioBatDau?:TimeSpan;
+    gioKetThuc?:TimeSpan;
 }
 export class NhanCongThang{
     hoTen?:string;

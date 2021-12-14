@@ -17,5 +17,52 @@ namespace WebApi.Controllers
         {
             sanPhamRepository= sanPham;
         }
+
+        [HttpGet("getSanPhamCoNgayDangKyTruocNgay")]
+        public IActionResult getSpCoNgayDangKyTruocNgay([FromQuery] string date)
+        {
+            try
+            {
+                var result = sanPhamRepository.getSanPhamCoNgayDangKyTruocNgay(date);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+
+        [HttpGet("getSanPhamCoHanSuDungTrenNam")]
+        public IActionResult getSanPhamCoHanSuDungTrenNam([FromQuery] int soNam)
+        {
+            try
+            {
+                var result = sanPhamRepository.getSanPhamCoHanSuDungTrenNam(soNam);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+        }
+        [HttpPost("createsanpham")]
+        public bool CreateSanPham([FromBody] SanPhamDto dto)
+        {
+            return sanPhamRepository.createSanPham(dto);
+        }
+
+        [HttpDelete("deleteSanPhamWithId/{maSanPham}")]
+        public bool deleteSanPhamWithId(int maSanPham)
+        {
+
+            return sanPhamRepository.DeleteSanPhamWithMa(maSanPham);
+        }
+
+        [HttpPut("updateSanPham")]
+        public bool UpdateCongViec([FromBody] SanPhamDtoUpdate dto)
+        {
+            return sanPhamRepository.UpdateSanPham(dto.MaSanPham, dto.TenSanPham, dto.SoDangKy, dto.HanSuDung, 
+                dto.QuyCach, dto.NgayDangKy, dto.NgaySanXuat);
+        }
     }
 }
